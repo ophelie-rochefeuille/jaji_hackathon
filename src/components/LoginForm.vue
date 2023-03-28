@@ -2,14 +2,15 @@
   <div class="login-container w-100 col-md-12 d-inline-flex">
       <!-- v-bind:class="{ 'responsive-layout': isResponsive }"> -->
     <div class="row col-md-12">
-      <div class="left-section col-md-8">
-        <img src="../assets/logo-jaji.png" alt="Logo">
-        <br>
+      <div class="left-section col-md-8 d-flex align-items-center justify-content-center">
+        <!-- <img src="../assets/logo-jaji.png" alt="Logo">
+        <br> -->
         <img src="../assets/login-picture.png" alt="Image">
       </div>
       <div class="right-section col-md-4 d-flex align-items-center justify-content-center">
         <!-- Login form fields -->
         <div class="form-group">
+          <img src="../assets/logo-jaji.png" alt="Logo">
           <h2 class="login-name text-primary">Back Office Content</h2>
           <p class="login-description">Renseignez vos identifiants pour vous connecter</p>
           <form>
@@ -106,6 +107,7 @@ export default {
   background-color: #f5f5f5;
   padding: 20px;
   flex: 0 0 auto; /* Set the flex property to 0 0 auto */
+  height: 866px !important;
 }
 
 .responsive-layout .left-section,
