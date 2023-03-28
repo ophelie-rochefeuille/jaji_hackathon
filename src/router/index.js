@@ -1,7 +1,7 @@
 // import Vue from 'vue'
 // import VueRouter from 'vue-router'
 import Home from '../components/HomePage.vue'
-import ConnexionPage from '../components/ConnexionPage.vue'
+import ConnexionPage from '../components/LoginForm.vue'
 
 
 
@@ -20,7 +20,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/log',
+    path: '/login',
     name: 'connexion',
     component: ConnexionPage
   },

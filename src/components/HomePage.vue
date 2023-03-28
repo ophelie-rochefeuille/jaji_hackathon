@@ -3,7 +3,7 @@
 
   <div>
     <h1>Bienvenue sur ma page d'accueil !</h1>
-    <router-link to="/form">Accéder au formulaire</router-link>
+    <router-link to="/login">Accéder au formulaire</router-link>
   </div>
 
 
