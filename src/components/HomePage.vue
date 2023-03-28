@@ -1,5 +1,12 @@
 <template>
   <div class="hello">
+
+  <div>
+    <h1>Bienvenue sur ma page d'accueil !</h1>
+    <router-link to="/form">Accéder au formulaire</router-link>
+  </div>
+
+
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
