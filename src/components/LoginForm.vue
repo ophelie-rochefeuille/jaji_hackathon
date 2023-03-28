@@ -35,14 +35,55 @@
           <div class="d-flex justify-content-end">
             <label for class="login-btn ml-auto text-right" @click.prevent="oublierMdp()">Mot de passe oublié ?</label>
           </div>
-          <button type="submit" class="btn btn-primary btn-block w-100 mt-3" @submit.prevent="login()">Se connecter</button>
+          <button type="submit" class="btn btn-primary btn-block w-100 mt-3" @click="login()">Se connecter</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script src="../js/Login/LoginForm.js"></script>
+<script>
+import axios from 'axios';
+export default {
+  data() {
+    return {
+      isResponsive: false,
+      showPassword: false,
+      emailUser: '',
+      passwordUser: ''
+    };
+  },
+  computed: {
+    passwordFieldType() {
+      return this.showPassword ? 'text' : 'password';
+    }
+  },
+  mounted() {
+    window.addEventListener("resize", this.checkResponsive);
+    this.checkResponsive();
+  },
+  methods: {
+    checkResponsive() {
+      this.isResponsive = window.innerWidth <= 768;
+      /* Set the value based on the screen size */
+    },
+    login() {
+       let formData = {
+        username: this.username,
+        password: this.password
+      };
+      axios.post('http://localhost:9000/api/users', formData)
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    }
+  }
+};
+
+</script>
 
 <style scoped>
 .responsive-layout .login-container {
