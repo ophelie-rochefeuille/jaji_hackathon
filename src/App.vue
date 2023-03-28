@@ -1,18 +1,12 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="main-app-div" @click="toogle">
+    <p class="ariane-filler"> <span class="ariane-greef">GREEF > </span>{{currentRouteName}} </p>
+    <LeftNavigation :drop-down-app-props="closeDropdown" :drop-down-avatar-props="closeDropdown"   />
+    <router-view class="pages" />
+  </div>
+
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
 <style>
 #app {
