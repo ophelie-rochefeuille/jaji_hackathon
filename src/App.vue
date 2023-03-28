@@ -1,6 +1,8 @@
+
+
 <template>
   <div class="main-app-div" @click="toogle">
-    <p class="ariane-filler"> <span class="ariane-greef">GREEF > </span>{{currentRouteName}} </p>
+    <p class="ariane-filler"> <span class="ariane-greef">GREEF</span>{{currentRouteName}} </p>
     <LeftNavigation :drop-down-app-props="closeDropdown" :drop-down-avatar-props="closeDropdown"   />
     <router-view class="pages" />
   </div>
@@ -15,6 +17,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
