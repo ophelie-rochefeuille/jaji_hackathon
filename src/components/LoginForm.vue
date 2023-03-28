@@ -3,12 +3,12 @@
       <!-- v-bind:class="{ 'responsive-layout': isResponsive }"> -->
     <div class="row col-md-12 d-inline-flex">
       <div class="left-section col-md-8 d-flex align-items-center justify-content-center">
-        <img src="../assets/login-pic.svg" style="transform: scale(0.8) !important;" alt="Image">
+        <img src="../assets/login-pic.svg" style="transform: scale(1) !important;" alt="Image">
       </div>
       <div class="right-section col-md-4 d-flex align-items-center justify-content-center">
         <!-- Login form fields -->
         <div class="form-group" v-if="!oublierMdp" style="max-width: 295px !important">
-          <img src="../assets/logo-jaji.png" style="transform: scale(0.7) !important;" alt="Logo">
+          <img src="../assets/logo-jaji.png" style="transform: scale(1) !important;" alt="Logo">
           <h2 class="login-name text-primary">Back Office Content</h2>
           <p class="login-description">Renseignez vos identifiants pour vous connecter</p>
           <form>
@@ -37,7 +37,7 @@
           <button type="submit" class="btn btn-primary btn-block w-100 mt-3" @click="login()">Se connecter</button>
         </div>
         <div class="form-group" v-if="oublierMdp" style="max-width: 295px !important">
-          <img src="../assets/logo-jaji.png" style="transform: scale(0.7) !important;" alt="Logo">
+          <img src="../assets/logo-jaji.png" style="transform: scale(1) !important;" alt="Logo">
           <br>
           <div class="d-flex justify-content-start">
             <label for class="login-btn ml-auto text-left" @click.prevent="oublierMdp = !oublierMdp">&lt; Retour</label>
