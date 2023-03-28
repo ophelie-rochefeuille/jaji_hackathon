@@ -1,15 +1,5 @@
 <template>
-
-  <SideBar :title="'je suis un test'" />
-  <SideBar :title="'1233444'" />
-  <SideBar :title="'zzzzzzz'" />
-  <SideBar :title="'je suis un test'" />
-
-
-  <div v-for="item in tab" :key="item.index">
-    {{item}}
-    <SideBar :array="tab" :title="item" />
-  </div>
+  <SideBar />
 
 </template>
 

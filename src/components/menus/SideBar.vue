@@ -1,14 +1,12 @@
 <template>
 
-  <h1>TEST</h1>
-  <p>{{test}}</p>
-
-  {{title}}
-
-
+  <div class="list-div" v-for="data in getSoignants" :key="data.index">
+{{data}}
+  </div>
 
 </template>
 <script>
+import { mapGetters} from 'vuex';
 
 export default {
   components: {},
@@ -20,11 +18,24 @@ export default {
   },
   methods: {
   },
+
   data() {
     return {
       test: "test",
     };
   },
+  created() {
+    this.$store.dispatch("fetchSoignants");
+  },
+  watch: {
+    month () {
+      this.$store.dispatch("fetchSoignants")
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getSoignants'
+    ]),}
 }
 
 </script>
