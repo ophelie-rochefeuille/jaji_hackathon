@@ -1,15 +1,13 @@
 <template>
   <div class="login-container w-100 col-md-12 d-inline-flex">
       <!-- v-bind:class="{ 'responsive-layout': isResponsive }"> -->
-    <div class="row col-md-12">
+    <div class="row col-md-12 d-inline-flex">
       <div class="left-section col-md-8 d-flex align-items-center justify-content-center">
-        <!-- <img src="../assets/logo-jaji.png" alt="Logo">
-        <br> -->
-        <img src="../assets/login-picture.png" style="transform: scale(0.8) !important;" alt="Image">
+        <img src="../assets/login-pic.svg" style="transform: scale(0.8) !important;" alt="Image">
       </div>
       <div class="right-section col-md-4 d-flex align-items-center justify-content-center">
         <!-- Login form fields -->
-        <div class="form-group">
+        <div class="form-group" v-if="!oublierMdp" style="max-width: 295px !important">
           <img src="../assets/logo-jaji.png" style="transform: scale(0.7) !important;" alt="Logo">
           <h2 class="login-name text-primary">Back Office Content</h2>
           <p class="login-description">Renseignez vos identifiants pour vous connecter</p>
@@ -34,9 +32,30 @@
             </div>
           </form>
           <div class="d-flex justify-content-end">
-            <label for class="login-btn ml-auto text-right" @click.prevent="oublierMdp()">Mot de passe oublié ?</label>
+            <label for class="login-btn ml-auto text-right" @click.prevent="oublierMdp = !oublierMdp">Mot de passe oublié ?</label>
           </div>
           <button type="submit" class="btn btn-primary btn-block w-100 mt-3" @click="login()">Se connecter</button>
+        </div>
+        <div class="form-group" v-if="oublierMdp" style="max-width: 295px !important">
+          <img src="../assets/logo-jaji.png" style="transform: scale(0.7) !important;" alt="Logo">
+          <br>
+          <div class="d-flex justify-content-start">
+            <label for class="login-btn ml-auto text-left" @click.prevent="oublierMdp = !oublierMdp">&lt; Retour</label>
+          </div>
+          <h2 class="login-name text-primary">Mot de passe oublié ?</h2>
+          <p class="login-description">Nous allons vous envoyer un lien de réinitialisation de votre mot de passe.</p>
+          <form>
+            <div class="row">
+              <div>   
+                <div class="d-flex justify-content-between">
+                  <label for="username" class="text-left">Addresse email:</label>
+                  <label for="show-password" class="ml-auto" v-if="false">Afficher</label>
+                </div>
+                <input type="text" id="username" name="username" class="form-control" v-model="emailUserForget">
+                <button type="submit" class="btn btn-primary btn-block w-100 mt-3" @click="sendForgetPwd()">Envoyer</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -51,7 +70,8 @@ export default {
       isResponsive: false,
       showPassword: false,
       emailUser: '',
-      passwordUser: ''
+      passwordUser: '',
+      oublierMdp: false
     };
   },
   computed: {
@@ -80,6 +100,18 @@ export default {
           .catch(error => {
             console.error(error);
           });
+    },
+    sendForgetPwd() {
+      let formData = {
+        email: this.emailUserForget
+      };
+      axios.post('http://localhost:9000/api/users/forget', formData)
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
     }
   }
 };
@@ -90,6 +122,7 @@ export default {
 .responsive-layout .login-container {
   flex-direction: row; /* Set the flex-direction property to row */
   width: 100% !important; /* Set the width to 100% */
+  display: inline-flex !important;
 }
 
 .left-section {
@@ -143,6 +176,10 @@ input {
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.text-primary {
+  color: #1f2f42 !important;
 }
 
 .login-btn {
