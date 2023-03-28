@@ -1,33 +1,14 @@
+
+
 <template>
-  <login></login>
+  <div class="main-app-div" @click="toogle">
+    <p class="ariane-filler"> <span class="ariane-greef">GREEF</span>{{currentRouteName}} </p>
+    <LeftNavigation :drop-down-app-props="closeDropdown" :drop-down-avatar-props="closeDropdown"   />
+    <router-view class="pages" />
+  </div>
+
 </template>
 
-<script>
-import Login from './components/LoginForm.vue';
-import 'bootstrap/dist/css/bootstrap.css'
-
-export default {
-  components: {
-    Login
-  }
-};
-</script>
-
-<!-- <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script> -->
 
 <style>
 #app {
@@ -38,15 +19,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
-.text-primary {
-  color: #1f2f42 !important; 
-}
-
-.btn-primary {
-  background-color: #ffd466 !important;
-  color: #1f2f42 !important;
-  border: none !important;
-}
 </style>
-
