@@ -23,10 +23,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   width: 100% !important;
+  height: 100% !important;
+}
+
+body, html {
+  height: 100%;
 }
 
 .main-app-div {
   width: 100% !important;
+  height: 100% !important;
 }
 
 .text-primary {

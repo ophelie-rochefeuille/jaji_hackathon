@@ -1,7 +1,6 @@
 <template>
   <div class="login-container w-100 d-inline-flex">
-      <!-- v-bind:class="{ 'responsive-layout': isResponsive }"> -->
-    <div class="row col-md-12 d-inline-flex">
+    <div class="row col-md-12 w-100 d-inline-flex" style="margin: 0 !important">
       <div class="left-section col-md-8 d-flex align-items-center justify-content-center">
         <img src="../assets/login-pic.svg" style="transform: scale(1) !important;" alt="Image">
       </div>
@@ -64,6 +63,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -131,6 +131,7 @@ export default {
   justify-content: center;
   padding: 20px;
   flex: 0 0 auto; /* Set the flex property to 0 0 auto */
+  height: 100% !important;
 }
 
 .right-section {
@@ -140,7 +141,7 @@ export default {
   background-color: #f5f5f5;
   padding: 20px;
   flex: 0 0 auto; /* Set the flex property to 0 0 auto */
-  height: 866px !important;
+  height: 100% !important;
 }
 
 .responsive-layout .left-section,

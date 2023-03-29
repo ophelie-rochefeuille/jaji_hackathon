@@ -61,6 +61,7 @@
         position: fixed;
         top: 0;
         left: 0;
+        background-color: #ffffff;
         height: 100vh;
         width: 7rem;
         background-color: #f5f5f5;
