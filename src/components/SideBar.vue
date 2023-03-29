@@ -64,7 +64,6 @@
         background-color: #ffffff;
         height: 100vh;
         width: 7rem;
-        background-color: #f5f5f5;
         box-sizing: border-box;
     }
 

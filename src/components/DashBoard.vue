@@ -154,6 +154,10 @@
   </script>
   
   <style scoped>
+
+  *{
+    height: 100%;
+  }
   .main-content {
     width: 90%; /* Set the width of the main content to 87% (100% - 13% for the sidebar) */
     margin-left: 10%; /* Set the left margin to 13% (the width of the sidebar) */

@@ -2,6 +2,11 @@
   <div class="main-div-profesional">
     <div class="first-div-soignant">
       <h4>Liste des soignants ayant ajouté une formation</h4>
+
+      <div class="search-bar">
+        <font-awesome-icon class="icon" :icon="`fas fa-magnifying-glass`" />
+        <input type="text">
+      </div>
     </div>
     <div class="main-div-soignant row row-cols-1 row-cols-md-3 g-4">
       <div v-for="soignant in getSoignants" :key="soignant.index" class="col card-profesional">
@@ -22,8 +27,21 @@
 
 <script>
 import {mapGetters} from "vuex";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(fas);
 
 export default {
+  methods: {
+    filteredList() {
+  return this.getSoignants.filter((soignant) =>
+      soignant
+  );
+}
+  },
+  components: {FontAwesomeIcon},
   created() {
     this.$store.dispatch("fetchSoignants");
   },
@@ -39,7 +57,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import url("../assets/fonts/fonts.scss");
 
 .main-div-profesional{
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
@@ -63,6 +82,9 @@ export default {
   cursor: pointer;
   max-width: 15rem;
   font-size: 12px;
+  span{
+    font-family: "source-pro-regular";
+  }
 
 }
 
@@ -100,9 +122,11 @@ a{
 }
 
 .first-div-soignant{
-  padding-top: 1rem;
+  font-family: "source-pro-regular";
+  padding: 1rem;
   margin-left: 1rem;
   display: flex;
+  justify-content: space-between;
   position: sticky;
   box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.05);
   top: 0;
@@ -117,6 +141,22 @@ h4{
 
 .link-profil{
   color: black;
+}
+
+.search-bar{
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  .icon{
+    padding-left: 0.5rem;
+  }
+
+}
+input{
+  border: none;
+  outline: none;
 }
 
 </style>
