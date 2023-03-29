@@ -83,8 +83,8 @@
         top: 0;
         left: 0;
         height: 100%;
-        width: 150px;
-        background-color: #f5f5f5;
+        width: 10%;
+        background-color: #ffffff;
         box-sizing: border-box;
     }
 
