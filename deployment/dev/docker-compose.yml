@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+
+  greef:
+    build:
+      context: ../../
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../../:/app/
+    container_name: greef
+
+
+
