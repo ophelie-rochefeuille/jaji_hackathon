@@ -3,10 +3,23 @@
 import Home from '../components/HomePage.vue'
 // import ConnexionPage from '../components/ConnexionPage.vue'
 import LoginForm from '../components/LoginForm.vue'
+import DashBoard from '../components/DashBoard.vue'
 
 import { createRouter, createWebHistory } from 'vue-router';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js' 
+
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faUserSecret)
 
 // import Dashboard from "../views/Dashboard"; - Dashboard / visualisation parcours / 
 // vue : dashborad / formation en détail / ?profil / visu parcours
@@ -33,6 +46,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginForm
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashBoard
   }
 ]
 

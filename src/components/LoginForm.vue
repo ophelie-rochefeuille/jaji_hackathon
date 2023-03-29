@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container w-100 col-md-12 d-inline-flex">
+  <div class="login-container w-100 d-inline-flex">
       <!-- v-bind:class="{ 'responsive-layout': isResponsive }"> -->
     <div class="row col-md-12 d-inline-flex">
       <div class="left-section col-md-8 d-flex align-items-center justify-content-center">
