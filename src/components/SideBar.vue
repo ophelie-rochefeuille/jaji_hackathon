@@ -6,11 +6,11 @@
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <ul style="padding: 0" class="justify-content-center d-block w-100">
-                <li v-for="item in menuItems" :key="item.id" class="d-block justify-content-center my-2">
-                <a :href="item.link" class="d-flex flex-column justify-content-center align-items-center my-2 py-auto" :class="{ active: isActive}">
+                <li class="d-block justify-content-center my-2">
+                <router-link v-for="item in menuItems" :key="item.id" active-class="activeLink" :to="item.link" class="d-flex flex-column justify-content-center align-items-center my-2 py-auto">
                     <font-awesome-icon :icon="`fas fa-${item.icon}`" />
                     <span class="mt-2">{{ item.title }}</span>
-                </a>
+                </router-link>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
                 { id: 2, title: 'Profil', icon: "user", link: '/profil' },
                 { id: 3, title: 'Suivi soins', icon: "notes-medical", link: '/soins' },
                 { id: 4, title: 'Formations', icon: "book", link: '/formations' },
-                { id: 5, title: 'Soignants', icon: "user-doctor", link: '/soignants' },
+                { id: 5, title: 'Soignants', icon: "user-doctor", link: '/soignant' },
                 ]
             }
         },
@@ -91,6 +91,9 @@
         background-color: #d5e4f6;
     }   
 
+    .activeLink{
+      background-color: #d5e4f6;
+    }
 
   </style>
   

@@ -33,6 +33,11 @@ export default {
   color: #1f2f42 !important;
 }
 
+.pages{
+  margin-left: 6.5rem;
+  background-color: #f5f5f5;
+
+}
 .btn-primary {
   background-color: #ffd466 !important;
   color: #1f2f42 !important;
