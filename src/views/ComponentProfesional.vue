@@ -65,6 +65,7 @@ export default {
   border: none;
   border-radius: 4px;
   background-color: white;
+  margin-left: 7.5rem;
 }
 .main-div-soignant{
   margin: 1rem 0.5rem;

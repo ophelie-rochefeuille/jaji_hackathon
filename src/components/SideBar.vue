@@ -1,6 +1,6 @@
 
 <template>
-    <div class="side d-flex flex-column justify-content-around">
+    <div class="main-div-side-bar side d-flex flex-column justify-content-around">
         <div class="d-flex justify-content-center align-items-center mt-4">
             <img src="../assets/jaji.svg" style="transform: scale(0.7) !important;" alt="Logo">
         </div>
@@ -60,6 +60,8 @@
 </script>
   
   <style scoped>
+
+
     .side {
         position: fixed;
         top: 0;
@@ -97,6 +99,8 @@
     .activeLink{
       background-color: #d5e4f6;
     }
-
+  .main-div-side-bar{
+    background-color: #FAFAFA;
+  }
   </style>
   
