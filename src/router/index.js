@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import MyProfesional from "@/views/ComponentProfesional.vue";
+import PersonalFileProfesional from "@/views/PersonalFileProfesional.vue";
 
 library.add(faUserSecret)
 
@@ -36,7 +37,11 @@ const routes = [
     path: '/soignant',
     name: 'soignant',
     component: MyProfesional
-
+  },
+  {
+    path: '/soignant/:id',
+    name: 'soignant_id',
+    component: PersonalFileProfesional
   }
 ]
 

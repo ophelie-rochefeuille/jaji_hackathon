@@ -6,16 +6,21 @@ export default createStore({
     state: {
         formations: [],
         soignants: [],
-        parcours: []
+        parcours: [],
+        soignant: []
     },
     getters: {
         getSoignants: (state) => state.soignants,
+        getOneSoignant: (state) => state.soignant,
         getFormations: (state) => state.formations,
         getParcours: (state) => state.parcours
     },
     mutations: {
         SET_SOIGNANTS(state, soignants) {
             state.soignants = soignants;
+        },
+        SET_SOIGNANT(state, soignant) {
+            state.soignant = soignant;
         },
         SET_FORMATIONS(state, formations) {
             state.formations = formations;
@@ -30,6 +35,14 @@ export default createStore({
             try {
                 const data = await axios.get('http://localhost:8000/soignant/');
                 commit("SET_SOIGNANTS", data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async fetchOneSoignant({commit}, id) {
+            try {
+                const data = await axios.get(`http://localhost:8000/soignant/${id}`);
+                commit("SET_SOIGNANT", data.data);
             } catch (error) {
                 console.log(error);
             }
