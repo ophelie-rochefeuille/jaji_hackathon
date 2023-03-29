@@ -1,11 +1,15 @@
 <template>
   <SideBar />
-
+  <FormationForm />
+  <button @click="showModal = true">Open Modal</button>
+    <ModalPopup v-if="showModal" @close="showModal = false" />
 </template>
+
 
 <script>
 import SideBar from "@/components/menus/SideBar.vue";
-export default {
+import FormationForm from "@/components/forms/FormationForm.vue";
+export default {  
   name: 'HelloWorld',
   data(){
     return {
@@ -13,7 +17,7 @@ export default {
       tab: [1,2,3,4]
     }
   },
-  components: {SideBar},
+  components: {SideBar, FormationForm},
   props: {
     msg: String
   }
