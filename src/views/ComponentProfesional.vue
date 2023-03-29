@@ -5,6 +5,7 @@
     </div>
     <div class="main-div-soignant row row-cols-1 row-cols-md-3 g-4">
       <div v-for="soignant in getSoignants" :key="soignant.index" class="col card-profesional">
+        <router-link class="link-profil" :to="{name: 'soignant_id',params: { id: soignant.id }}">
         <div class="h-100">
           <img src="../assets/jaji.svg" class="card-img-top profil-soignant" alt="test">
           <div class="card-body d-flex flex-column">
@@ -13,6 +14,7 @@
             <button  class="btn"><a :href="soignant.doctolib" class="card-text"> Doctolib</a></button>
           </div>
         </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -113,5 +115,8 @@ h4{
   border-left: 3px solid rgba(0, 0, 0, 0.5);
 }
 
+.link-profil{
+  color: black;
+}
 
 </style>
