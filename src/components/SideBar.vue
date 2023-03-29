@@ -1,30 +1,13 @@
-<!-- <template>
-    <div class="side ">
-        <div class="d-flex justify-content-center align-items-center">
-            <img src="../assets/logo-jaji.png" style="transform: scale(0.7) !important;" alt="Logo">
-        </div>
-        <div class="d-flex align-items-center justify-content-center">
-            <ul style="padding: 0" class="justify-content-center d-block w-100">
-                    <li v-for="item in menuItems" :key="item.id" class="d-block justify-content-center my-2">
-                     <a :href="item.link" class="d-flex flex-column justify-content-center align-items-center my-2 py-auto"  :class="{ active: isActive(item.link) }">
-                        <font-awesome-icon :icon="`fas fa-${item.icon}`" />
-                        <span class="mt-2">{{ item.title }}</span>
-                    </a>
-                    </li>
-                </ul>
-        </div>
-    </div>
-</template> -->
 
 <template>
-    <div class="side d-flex flex-column justify-content-between">
-        <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
-            <img src="../assets/logo-jaji.png" style="transform: scale(0.7) !important;" alt="Logo">
+    <div class="side d-flex flex-column justify-content-around">
+        <div class="d-flex justify-content-center align-items-center mt-4">
+            <img src="../assets/jaji.svg" style="transform: scale(0.7) !important;" alt="Logo">
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <ul style="padding: 0" class="justify-content-center d-block w-100">
                 <li v-for="item in menuItems" :key="item.id" class="d-block justify-content-center my-2">
-                <a :href="item.link" class="d-flex flex-column justify-content-center align-items-center my-2 py-auto" :class="{ active: isActive(item.link) }">
+                <a :href="item.link" class="d-flex flex-column justify-content-center align-items-center my-2 py-auto" :class="{ active: isActive}">
                     <font-awesome-icon :icon="`fas fa-${item.icon}`" />
                     <span class="mt-2">{{ item.title }}</span>
                 </a>
@@ -65,10 +48,6 @@
             }
         }, 
         methods:{
-            isActive(link) {
-                console.log(this.$route.name.replace(/^\//, '') === link.replace(/^\//, ''))
-                return this.$route.name.replace(/^\//, '') === link.replace(/^\//, '')
-            },
             logout() {
                 // this.$store.dispatch('logout');
                 // this.$router.push({ name: 'login' });
@@ -82,8 +61,8 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100%;
-        width: 150px;
+        height: 100vh;
+        width: 7rem;
         background-color: #f5f5f5;
         box-sizing: border-box;
     }
@@ -101,9 +80,9 @@
         justify-content: center;
         text-decoration: none;
         color: #1f2f42 !important;
-        transition: all 0.2s ease-in-out; 
-        min-height: 80px;
-        width: 100%;
+        transition: all 0.2s ease-in-out;
+      padding: 0.5rem 0rem;
+
     }
 
     .side li a:hover,

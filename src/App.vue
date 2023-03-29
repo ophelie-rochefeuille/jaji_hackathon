@@ -2,11 +2,17 @@
 
 <template>
   <div class="main-app-div d-inline-flex" @click="toogle">
-    <p class="ariane-filler"> <span class="ariane-greef"></span>{{currentRouteName}} </p>
-    <LeftNavigation :drop-down-app-props="closeDropdown" :drop-down-avatar-props="closeDropdown"   />
+  <SideBar />
     <router-view class="pages" />
   </div>
 </template>
+
+<script>
+import SideBar from './components/SideBar.vue'
+export default {
+  components: { SideBar },
+};
+</script>
 
 
 <style>
