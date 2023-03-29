@@ -66,7 +66,6 @@
         }, 
         methods:{
             isActive(link) {
-                console.log(this.$route.name.replace(/^\//, '') === link.replace(/^\//, ''))
                 return this.$route.name.replace(/^\//, '') === link.replace(/^\//, '')
             },
             logout() {
