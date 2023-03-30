@@ -1,84 +1,88 @@
 <template>
-  <div class="main-div-profesional">
-    <div class="first-div-soignant">
-          <h4>Profil du soignant</h4>
-        </div>
-    <div class="content">
+  <div class="modal-popup">
+  <div class="modal-content">
+    <div class="main-div-profesional">
+      <div class="first-div-soignant">
+            <h4>Profil du soignant</h4>
+          </div>
+      <div class="content">
 
 
-      <div class="main-div-profil">
+        <div class="main-div-profil">
 
-        <div class="secondary-div-profil">
-          <div class="details-profil">
-            <h1>{{getOneSoignant.firstName}} Dan Dan {{getOneSoignant.lastName}}</h1>
-            <h2>Métier</h2>
-            <h4>{{getOneSoignant.catégorie}} Urologue</h4>
-            <h2>Email</h2>
-            <h4>{{getOneSoignant.numero}}+33 36 30 36 30</h4>
-            <h2>Adresse</h2>
-            <h4>{{getOneSoignant.doctolib}} 145 rue de la Fayette, 75010</h4>
-            <h2>Doctolib</h2>
-            <a href={{getOneSoignant.doctolib}}>{{getOneSoignant.doctolib}} http://doctolib/suite/lien</a>
+          <div class="secondary-div-profil">
+            <div class="details-profil">
+              <h1>{{getOneSoignant.firstName}} Dan Dan {{getOneSoignant.lastName}}</h1>
+              <h2>Métier</h2>
+              <h4>{{getOneSoignant.catégorie}} Urologue</h4>
+              <h2>Email</h2>
+              <h4>{{getOneSoignant.numero}}+33 36 30 36 30</h4>
+              <h2>Adresse</h2>
+              <h4>{{getOneSoignant.doctolib}} 145 rue de la Fayette, 75010</h4>
+              <h2>Doctolib</h2>
+              <a href={{getOneSoignant.doctolib}}>{{getOneSoignant.doctolib}} http://doctolib/suite/lien</a>
+            <!-- </div> -->
+
+
           <!-- </div> -->
 
+          <div class="details-formations-profil">
+            <h1 class="text-start">Historique de formations :</h1>
 
-        <!-- </div> -->
-
-        <div class="details-formations-profil">
-          <h1 class="text-start">Historique de formations :</h1>
-
-          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="../assets/health.jpg" class=" w-50" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="../assets/health.jpg" class=" w-50" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="../assets/health.jpg" class=" w-50" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../assets/health.jpg" class=" w-50" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>First slide label</h5>
-                  <p>Some representative placeholder content for the first slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../assets/health.jpg" class=" w-50" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>Some representative placeholder content for the second slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../assets/health.jpg" class=" w-50" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Some representative placeholder content for the third slide.</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
         </div>
-      </div>
-      </div>
+        </div>
+        </div>
+
+        <div class="second-div-profil">
+        <div class="details-picture-profil">
+            <img src="../assets/login-pic.svg">
+          </div> 
       </div>
 
-      <div class="second-div-profil">
-      <div class="details-picture-profil">
-          <img src="../assets/login-pic.svg">
-        </div> 
+      </div>
+
     </div>
-
-    </div>
-
   </div>
+</div>
 </template>
 
 <script>
@@ -101,16 +105,17 @@ export default {
 </script>
 
 <style scoped>
-* {
-  background-color: #c9B3D5}
+/* * {
+  background-color: #c9B3D5} */
 .main-div-profesional{
   display: flex;
   width: 100%;
+  height: 100%;
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 4px;
   background-color: white;
-  margin-left: 7.5rem;
+  /* margin-left: 7.5rem; */
   flex-direction: column;/*row;*/
   align-items: center;
   overflow: hidden;
@@ -158,7 +163,6 @@ export default {
   margin: 1rem;
   
   height: auto;
-  margin-top: 8.1rem;
 }
 
 .second-div-profil{
@@ -201,5 +205,26 @@ h2 + h4, h2 + a {
   background-color: blueviolet;
 } */
 
-
+.modal-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    height: 85%;
+    /* max-width: 600px; */
+  }
 </style>

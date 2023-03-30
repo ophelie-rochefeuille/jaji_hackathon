@@ -21,6 +21,13 @@
         </div>
         </router-link>
         <button @click="showModal = true">Open Modal</button>
+        <ModalPopup v-if="showModal" @close="showModal = false" >
+          <button @click="showModal = false" class="closeModale">ALLO Fermer la fenêtre modale</button>
+          <ProfilProfesional>
+            
+          </ProfilProfesional>
+        </ModalPopup>
+
 
 
 
@@ -28,10 +35,89 @@
       </div>
     </div>
   </div>
-  <ModalPopup v-if="showModal" @close="showModal = false" >
-              <ProfilProfesional/>
-              <button @click="showModal = false">ALLO Fermer la fenêtre modale</button>
-  </ModalPopup>
+  <button class="button-add" @click="isOpen = true"> Ajouter un parcours de soin</button>
+  <ModalProfil class="modal-charge" :open="isOpen" @close="isOpen = !isOpen">
+    <div class="main-div-profesional">
+      <div class="first-div-soignant">
+            <h4>Profil du soignant</h4>
+          </div>
+      <div class="content">
+
+
+        <div class="main-div-profil">
+
+          <div class="secondary-div-profil">
+            <div class="details-profil">
+              <h1>{{getOneSoignant.firstName}} Dan Dan {{getOneSoignant.lastName}}</h1>
+              <h2>Métier</h2>
+              <h4>{{getOneSoignant.catégorie}} Urologue</h4>
+              <h2>Email</h2>
+              <h4>{{getOneSoignant.numero}}+33 36 30 36 30</h4>
+              <h2>Adresse</h2>
+              <h4>{{getOneSoignant.doctolib}} 145 rue de la Fayette, 75010</h4>
+              <h2>Doctolib</h2>
+              <a href={{getOneSoignant.doctolib}}>{{getOneSoignant.doctolib}} http://doctolib/suite/lien</a>
+            <!-- </div> -->
+
+
+          <!-- </div> -->
+
+          <div class="details-formations-profil">
+            <h1 class="text-start">Historique de formations :</h1>
+
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="../assets/health.jpg" class=" w-50" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="../assets/health.jpg" class=" w-50" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="../assets/health.jpg" class=" w-50" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="second-div-profil">
+        <div class="details-picture-profil">
+            <img src="../assets/login-pic.svg">
+          </div> 
+      </div>
+
+      </div>
+
+    </div>
+  </ModalProfil>
 </template>
 
 <script>
@@ -39,7 +125,8 @@ import {mapGetters} from "vuex";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
+import ModalProfil from "@/components/forms/ModalProfilProfesional.vue";
+import {ref} from "vue";
 library.add(fas);
 
 import ProfilProfesional from "@/views/PersonalFileProfesional.vue";
@@ -52,10 +139,16 @@ export default {
   );
 }
   },
-  components: { FontAwesomeIcon, ProfilProfesional},
+  components: { FontAwesomeIcon, ProfilProfesional, ModalProfil},
+  setup(){
+    const isOpen = ref(false);
+    return {isOpen}
+  },
   data(){
     return {
-      showModal: false
+      showModal: false,
+
+      open: false,
     }
   },
   created() {
@@ -175,5 +268,8 @@ input{
   border: none;
   outline: none;
 }
-
+.closeModale {
+  position: absolute;
+  z-index: 9999;
+}
 </style>
