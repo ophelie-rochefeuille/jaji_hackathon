@@ -9,14 +9,7 @@
         </div>
       <div class="inner-container d-block">
         <div class="formations-list mx-5">
-          <!-- <div class="formations">
-            <div class="formation" v-for="formation in filteredFormations" :key="formation.id">
-              <div class="formation-title">
-                <img src="../assets/jaji.svg" alt="formation image" class="formation-image" />
-                <h3 class="text-primary">{{ formation.title }}</h3>
-              </div>
-            </div>
-          </div> -->
+
           <div class="formations pt-5">
             <div class="row my-5 d-flex justify-content-between" v-for="row in filteredFormations" :key="row[0].id">
               <div class="col-4 formation" v-for="formation in row" :key="formation.id">
@@ -115,8 +108,6 @@
 
 <style scoped>
   .header-bloc{
-    /* margin-left: 2rem;
-    margin-right: 1rem; */
     margin: 3% 1rem 3% 2rem;
     width: calc(100% - 4rem)!important;
   }
@@ -129,14 +120,12 @@
   .formation-container {
     flex-direction: row;
     margin-left: 7rem;
-    height: 100% !important;
-    width: 100% !important;
     background-color: #ffffff;
   }
 
   .inner-container {
     flex-direction: row;
-    height: 80%!important;
+
     width: calc(100% - 4rem)!important;
     margin: 0 2rem 0 2rem;
     /* background-color: #f5f6f7; */
