@@ -90,16 +90,26 @@ export default {
     },
     login() {
        let formData = {
-        username: this.username,
-        password: this.password
+         username: this.username,
+         password: this.passwordUser,
+         email: this.emailUser
       };
-      axios.post('http://localhost:9000/api/users', formData)
+      axios.post('http://127.0.0.1:8000/api/login_check', formData)
+          .then(response => {
+            console.log(response.data);
+          }).catch(error => {
+        console.log(error.response.data);
+      }).finally(() => {
+        this.isLoading = false;
+      })
+
+      /*axios.post('http://localhost:9000/api/users', formData)
           .then(response => {
             console.log(response.data);
           })
           .catch(error => {
             console.error(error);
-          });
+          });*/
     },
     sendForgetPwd() {
       let formData = {
