@@ -10,6 +10,8 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import MyProfesional from "@/views/ComponentProfesional.vue";
 import PersonalFileProfesional from "@/views/PersonalFileProfesional.vue";
 
+
+/* add icons to the library */
 library.add(faUserSecret)
 
 const routes = [

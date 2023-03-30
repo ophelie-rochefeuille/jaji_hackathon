@@ -48,6 +48,9 @@
             }
         }, 
         methods:{
+            isActive(link) {
+                return this.$route.name.replace(/^\//, '') === link.replace(/^\//, '')
+            },
             logout() {
                 // this.$store.dispatch('logout');
                 // this.$router.push({ name: 'login' });
