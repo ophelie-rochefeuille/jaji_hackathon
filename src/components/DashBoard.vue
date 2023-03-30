@@ -1,8 +1,12 @@
 <template>
     <div class=" dashboard-container">
+      <div class="first-div-soignant">
+        <h4>Dashboard</h4>
+        <button class="button-add" @click="isOpen = true"> <font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter un parcours de soin</button>
+      </div>
         <div>
             <div>
-                <span class="my-3 text-start">Mes parcours</span>
+                <p class="my-3 text-start">Mes parcours</p>
                 <div class="first-div-dashboard mb-2" >
                     <div>
                         <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousParcours()" >
@@ -11,7 +15,7 @@
                     </div>
                     <div class="main-div-items">
                         <div class="items-dashboard">
-                            <div v-for="parcours in filteredParcours" :key="parcours.id" class="text-center parcours-block" @click.prevent="redirectToParcours(parcours.id)">
+                            <div v-for="parcours in filteredParcours" :key="parcours.id" class="div-card text-center parcours-block" @click.prevent="redirectToParcours(parcours.id)">
                                 <img class="img-dashboard" src="../assets/logo-jaji.png" >
                                 <div >{{ parcours.title }}</div>
                             </div>
@@ -24,7 +28,7 @@
                     </div>
                 </div>
 
-                <span class="my-3 text-start">Mes formations</span>
+                <p class="my-3 text-start">Mes formations</p>
                 <div class="second-div-dashboard mb-2" >
                     <div>
                         <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousFormations()" >
@@ -33,7 +37,7 @@
                     </div>
                     <div class="main-div-items">
                         <div class="items-dashboard">
-                            <div v-for="formation in filteredFormations" :key="formation.id" class="text-center formation-block" @click.prevent="redirectToFormation(formation.id)">
+                            <div v-for="formation in filteredFormations" :key="formation.id" class="div-card text-center formation-block" @click.prevent="redirectToFormation(formation.id)">
                                 <img class="img-dashboard" src="../assets/logo-jaji.png" >
                                 <div >{{ formation.title }}</div>
                             </div>
@@ -45,7 +49,7 @@
                         </button>
                     </div>
                 </div>
-                <span class="my-3 text-start">Liste des soignants</span>
+                <p class="my-3 text-start">Liste des soignants</p>
                 <div class=" third-div-dashboard  mb-2" >
                     <div>
                         <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousSoignants()" >
@@ -54,11 +58,11 @@
                     </div>
                     <div class="main-div-items">
                         <div class="items-dashboard">
-                            <div v-for="soignant in filteredSoignants" :key="soignant.id" class="text-center soignant-block" @click.prevent="redirectToSoignant(soignant.id)">
+                            <div v-for="soignant in filteredSoignants" :key="soignant.id" class="div-card text-center soignant-block" @click.prevent="redirectToSoignant(soignant.id)">
                                 <div>
                                     <img class="img-dashboard" src="../assets/logo-jaji.png">
 
-                                    <div>{{ soignant.title }}</div>
+                                    <div>{{ soignant.firstName }} {{ soignant.lastName }}</div>
                                 </div>
                             </div>
                         </div>
@@ -72,6 +76,74 @@
             </div>
         </div>
     </div>
+
+  <ModalAdd class="modal-charge" :open="isOpen" @close="isOpen = !isOpen">
+    <h5 class="title-modal">Ajout d'un nouveau parcours</h5>
+    <div class="step-one " v-show="currentPage === 1">
+      <div class="first-div-modal">
+        <label>Détails du parcours *</label>
+        <input class="input" type="text" placeholder="Titre">
+        <label>Description *</label>
+        <input class="input" type="text" placeholder="Description">
+      </div>
+      <div class="buttons-div">
+        <button v-show="currentPage !== 1" @click="prevPage"><font-awesome-icon icon="fas fa-chevron-left" /></button>
+        <button v-show="currentPage !== 3" class="button-next" @click="nextPage"><font-awesome-icon icon="fas fa-chevron-right" /></button>
+      </div>
+
+    </div>
+
+    <div class="step-two" v-show="currentPage === 2">
+      <div class="second-div-modal">
+        <label>Grandes étapes du parcours</label>
+        <input v-model="value" v-on:keyup.enter="addValue">
+        <ul>
+          <li v-for="(val, index) in values" :key="val.index">{{ val }} <button class="button-delete-modal" @click="removeValues(index)">Supprimer</button> </li>
+
+        </ul>
+
+      </div>
+      <div class="buttons-div">
+        <button v-show="currentPage !== 1" @click="prevPage"><font-awesome-icon icon="fas fa-chevron-left" /></button>
+        <button v-show="currentPage !== 3" class="button-next" @click="nextPage"><font-awesome-icon icon="fas fa-chevron-right" /></button>
+      </div>
+    </div>
+
+    <div class="step-two" v-show="currentPage === 3">
+      <div class="third-div-modal">
+          <div class="main-div-questions">
+            <label for="question1">Question 1 :</label>
+            <input type="text" id="question1">
+            <div class="div-response">
+              <input type="radio" id="q1_true" name="q1" value="true">
+              <span for="q1_true">Vrai</span>
+            </div>
+            <div class="div-response">
+              <input type="radio" id="q1_false" name="q1" value="false">
+              <span for="q1_false">Faux</span>
+            </div>
+          </div>
+          <div class="main-div-questions">
+            <label for="question2">Question 2 :</label>
+            <input type="text" id="question2">
+            <div class="div-response">
+              <input type="radio" id="q2_true" name="q2" value="true">
+              <span for="q2_true">Vrai</span>
+            </div>
+            <div class="div-response">
+              <input type="radio" id="q2_false" name="q2" value="false">
+              <span for="q2_false">Faux</span>
+            </div>
+          </div>
+          <button class="button-create">Créer le questionnaire</button>
+
+      </div>
+      <div class="buttons-div">
+        <button v-show="currentPage !== 1" @click="prevPage"><font-awesome-icon icon="fas fa-chevron-left" /></button>
+        <button v-show="currentPage !== 3" class="button-next" @click="nextPage"><font-awesome-icon icon="fas fa-chevron-right" /></button>
+      </div>
+    </div>
+  </ModalAdd>
   </template>
   
   <script>
@@ -79,205 +151,100 @@
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { fas } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import ModalAdd from "@/components/forms/ModalAdd.vue";
+import {ref} from "vue";
+import {mapGetters} from "vuex";
   
   library.add(fas);
   
   export default {
     components: {
+      ModalAdd,
         'font-awesome-icon': FontAwesomeIcon,
       
     },
+    setup(){
+      const isOpen = ref(false);
+
+      return { isOpen }
+    },
     data () {
       return {
-        formations: [
-            {
-                id: 1,
-                title: 'Formation 1',
-                // faut ajouter le champ image ici pour changer l'image
-            },
-            {
-                id: 2,
-                title: 'Formation 2'
-            },
-            {
-                id: 3,
-                title: 'Formation 3',
-            },
-            {
-                id: 4,
-                title: 'Formation 4'
-            },
-            {
-                id: 5,
-                title: 'Formation 5'
-            },
-            {
-                id: 6,
-                title: 'Formation 6'
-            },
-            {
-                id: 7,
-                title: 'Formation 7'
-            },
-            {
-                id: 8,
-                title: 'Formation 8'
-            },
-            {
-                id: 9,
-                title: 'Formation 9'
-            }
-        ],
-        parcours: [
-            {
-                id: 1,
-                title: 'Parcours 1',
-                // faut ajouter le champ image ici pour changer l'image
-            },
-            {
-                id: 2,
-                title: 'Parcours 2'
-            },
-            {
-                id: 3,
-                title: 'Parcours 3',
-            },
-            {
-                id: 4,
-                title: 'Parcours 4'
-            },
-            {
-                id: 5,
-                title: 'Parcours 5'
-            },
-            {
-                id: 6,
-                title: 'Parcours 6'
-            },
-            {
-                id: 7,
-                title: 'Parcours 7'
-            },
-            {
-                id: 8,
-                title: 'Parcours 8'
-            },
-            {
-                id: 9,
-                title: 'Parcours 9'
-            }
-        ],
-        soignants: [
-            {
-                id: 1,
-                title: 'Soignant 1',
-                // faut ajouter le champ image ici pour changer l'image
-            },
-            {
-                id: 2,
-                title: 'Soignant 2'
-            },
-            {
-                id: 3,
-                title: 'Soignant 3',
-            },
-            {
-                id: 4,
-                title: 'Soignant 4'
-            },
-            {
-                id: 5,
-                title: 'Soignant 5'
-            },
-            {
-                id: 6,
-                title: 'Soignant 6'
-            },
-            {
-                id: 7,
-                title: 'Soignant 7'
-            },
-            {
-                id: 8,
-                title: 'Soignant 8'
-            },
-            {
-                id: 9,
-                title: 'Soignant 9'
-            }
-        ],
+        currentPage: 1,
+        value: '',
+        values: [],
+        open: false,
+        stepOne: true,
+        stepTwo: false,
+        stepThree: false,
         currentFormationIndex: 0,
         currentParcoursIndex: 0,
         currentSoignantIndex: 0,
+
       }
     },
-    mounted () {
-    //   this.getFormations()
-    //   this.getParcours()
-    //   this.getSoignants()
+    created() {
+      this.$store.dispatch("fetchSoignants");
+      this.$store.dispatch("fetchParcours");
+      this.$store.dispatch("fetchFormations");
+    },
+    watch: {
+      month () {
+        this.$store.dispatch("fetchSoignants");
+        this.$store.dispatch("fetchParcours");
+        this.$store.dispatch("fetchFormations");
+      }
     },
     computed: {
+      ...mapGetters([
+        'getSoignants', 'getParcours', 'getFormations'
+      ]),
         filteredFormations () {
-            return this.formations.slice(this.currentFormationIndex, this.currentFormationIndex + 5) // 5 formations par page
+            return this.getFormations.slice(this.currentFormationIndex, this.currentFormationIndex + 5) // 5 formations par page
         },
         filteredParcours () {
-            return this.parcours.slice(this.currentParcoursIndex, this.currentParcoursIndex + 5) // 5 parcours par page
+            return this.getParcours.slice(this.currentParcoursIndex, this.currentParcoursIndex + 5) // 5 parcours par page
         },
         filteredSoignants () {
-            return this.soignants.slice(this.currentSoignantIndex, this.currentSoignantIndex + 5) // 5 soignants par page
+            return this.getSoignants.slice(this.currentSoignantIndex, this.currentSoignantIndex + 5) // 5 soignants par page
         }
     },
     methods: {
-        // getFormations () { // TODO Faut changer en POST avec body {userid: 1}
-        //     // let formData = {
-        //     //     userid: 1,
-        //     // };
-        //     axios.get('http://localhost:8000/user')
-        //         .then(response => {
-        //             // console.log(response.data);
-        //         })
-        //         .catch(error => {
-        //             // console.error(error);
-        //         });
-        // },
-        // getParcours () { // TODO Faut changer en POST avec body {userid: 1}
-        //     axios.get('http://localhost:8000/parcours')
-        //         .then(response => {
-        //             // console.log(response.data);
-        //         })
-        //         .catch(error => {
-        //             // console.error(error);
-        //         });
-        // },
-        // getSoignants () {
-        //     axios.get('http://localhost:8000/soignant')
-        //         .then(response => {
-        //             // console.log(response.data);
-        //         })
-        //         .catch(error => {
-        //             // console.error(error);
-        //         });
-        // },
-        // redirectToFormation (id) {
-        //     // this.$router.push({ name: 'formation', params: { id: id } }) //TODO a changer
-        // },
-        // redirectToParcours (id) {
-        //     // this.$router.push({ name: 'parcours', params: { id: id } })
-        // },
-        // redirectToSoignant (id) {
-        //     // this.$router.push({ name: 'soignant', params: { id: id } })
-        // },
+      nextPage() {
+        this.currentPage++;
+      },
+      prevPage() {
+        this.currentPage--;
+      },
+      removeValues(index) {
+        this.values.splice(index, 1);
+      },
+      addValue() {
+        this.values.push(this.value);
+        this.value = '';
+      },
+      nextStep(){
+        this.stepOne = !this.stepOne;
+        this.stepTwo = !this.stepTwo
+      },
+      nextStepTwo(){
+        this.stepTwo = !this.stepTwo;
+        this.stepThree = !this.stepThree
+      },
+      nextStepThree(){
+        this.stepThree = !this.stepThree
+      },
         nextFormations () {
-            if (this.currentFormationIndex + 5 > this.formations.length) { // Si on est à la dernière page
+            if (this.currentFormationIndex + 5 > this.getFormations.length) { // Si on est à la dernière page
                return
             }
-            else if (this.formations.length - (this.currentFormationIndex + 5) < 5) { 
-                this.currentFormationIndex += this.formations.length - (this.currentFormationIndex + 5)
+            else if (this.getFormations.length - (this.currentFormationIndex + 5) < 5) {
+                this.currentFormationIndex += this.getFormations.length - (this.currentFormationIndex + 5)
             }
-            else if (this.currentFormationIndex < this.formations.length - 5) {
+            else if (this.currentFormationIndex < this.getFormations.length - 5) {
                 this.currentFormationIndex += 5
             } else {
-                this.currentFormationIndex += this.formations.length % 5
+                this.currentFormationIndex += this.getFormations.length % 5
             }
             
         },
@@ -291,16 +258,16 @@
             }
         },
         nextParcours () {
-            if (this.currentParcoursIndex + 5 > this.parcours.length) { // Si on est à la dernière page
+            if (this.currentParcoursIndex + 5 > this.getParcours.length) { // Si on est à la dernière page
                return
             }
-            else if (this.parcours.length - (this.currentParcoursIndex + 5) < 5) { 
-                this.currentParcoursIndex += this.parcours.length - (this.currentParcoursIndex + 5)
+            else if (this.getParcours.length - (this.currentParcoursIndex + 5) < 5) {
+                this.currentParcoursIndex += this.getParcours.length - (this.currentParcoursIndex + 5)
             }
-            else if (this.currentParcoursIndex < this.parcours.length - 5) {
+            else if (this.currentParcoursIndex < this.getParcours.length - 5) {
                 this.currentParcoursIndex += 5
             } else {
-                this.currentParcoursIndex += this.parcours.length % 5
+                this.currentParcoursIndex += this.getParcours.length % 5
             }
         },
         previousParcours () {
@@ -313,16 +280,16 @@
             }
         },
         nextSoignants () {
-            if (this.currentSoignantIndex + 5 > this.soignants.length) { // Si on est à la dernière page
+            if (this.currentSoignantIndex + 5 > this.getSoignants.length) { // Si on est à la dernière page
                return
             }
-            else if (this.soignants.length - (this.currentSoignantIndex + 5) < 5) { 
-                this.currentSoignantIndex += this.soignants.length - (this.currentSoignantIndex + 5)
+            else if (this.getSoignants.length - (this.currentSoignantIndex + 5) < 5) {
+                this.currentSoignantIndex += this.getSoignants.length - (this.currentSoignantIndex + 5)
             }
-            else if (this.currentSoignantIndex < this.soignants.length - 5) {
+            else if (this.currentSoignantIndex < this.getSoignants.length - 5) {
                 this.currentSoignantIndex += 5
             } else {
-                this.currentSoignantIndex += this.soignants.length % 5
+                this.currentSoignantIndex += this.getSoignants.length % 5
             }
         },
         previousSoignants () {
@@ -339,7 +306,82 @@
   </script>
   
   <style scoped lang="scss">
+  @import url("../assets/fonts/fonts.scss");
 
+  .div-card{
+    width: 100%;
+  }
+  .button-create{
+    outline: none;
+    border: none;
+    background-color: #355070;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    width: 30%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+  .div-response{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    input{
+      margin-right: 0.5rem;
+    }
+  }
+  .main-div-questions{
+    display: flex;
+    flex-direction: column;
+  }
+  .first-div-modal,
+  .second-div-modal,
+  .third-div-modal{
+    display: flex;
+    flex-direction: column;
+    label {
+      font-size: 10px;
+      width: 30%;
+      padding-left: 0.25rem;
+      text-align: start;
+      position: relative;
+      top: 10px;
+      color: dimgrey;
+      background-color: white;
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+    }
+    input{
+      padding: 0.5rem;
+      outline: none;
+      border: 1px solid rgba(213, 228, 246, 0.8);
+      border-radius: 4px;
+
+    }
+    ul{
+      padding: 0;
+    }
+    li{
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem;
+      text-decoration: none;
+      list-style-type: none;
+      margin-top: 0.5rem;
+    }
+    li:hover{
+      box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.05);
+    }
+
+  }
+  .button-delete-modal{
+    background-color: white;
+    color: #D45458;
+    border: 1px solid #D45458;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.05);
+  }
   .main-div-items{
     width: 100%;
   }
@@ -348,6 +390,60 @@
     max-width: 90px;
   }
 
+  .button-add{
+    padding: 0rem 0.5rem;
+    margin-right: 2rem;
+    background-color: #355070;
+    color:white;
+    border: none;
+    border-radius: 4px;
+  }
+
+  .buttons-div{
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+    button{
+      border: none;
+      background-color: #355070;
+      color: white;
+      border-radius: 50%;
+      padding: 0.5rem;
+      height: 33px;
+      width: 33px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0.5rem;
+    }
+  }
+  .first-div-soignant{
+    font-family: "source-pro-regular";
+    padding: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.05);
+    top: 0;
+    background-color: white;
+    z-index: 10;
+    button{
+      font-size: 14px;
+      font-family: source-pro-light;
+    }
+  }
+
+  h4{
+    padding-left: 1rem;
+    border-left: 3px solid rgba(0, 0, 0, 0.5);
+  }
+
+
+  p{
+    font-size: 16px;
+  font-family: "source-pro-bold";
+  }
   .items-dashboard{
     display: flex;
     justify-content: space-around;
@@ -357,8 +453,8 @@
     .third-div-dashboard{
       padding: 0.5rem;
       margin: 0.5rem 3rem;
-     // box-shadow: 2px 3px 6px rgba(213, 228, 246, 1);
-      border: 2px solid #d5e4f6;
+     box-shadow: 2px 3px 6px rgba(213, 228, 246, 1);
+      //border: 2px solid #d5e4f6;
       border-radius: 4px;
       display: flex;
       justify-content: space-between;
