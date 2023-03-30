@@ -38,7 +38,7 @@
                     <div class="main-div-items">
                         <div class="items-dashboard">
                             <div v-for="formation in filteredFormations" :key="formation.id" class="div-card text-center formation-block" @click.prevent="redirectToFormation(formation.id)">
-                                <img class="img-dashboard" src="../assets/logo-jaji.png" >
+                                <img class="img-dashboard" :src="formation.image" >
                                 <div >{{ formation.title }}</div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                         <div class="items-dashboard">
                             <div v-for="soignant in filteredSoignants" :key="soignant.id" class="div-card text-center soignant-block" @click.prevent="redirectToSoignant(soignant.id)">
                                 <div>
-                                    <img class="img-dashboard" src="../assets/logo-jaji.png">
+                                    <img class="img-dashboard-soignants" :src="soignant.image">
 
                                     <div>{{ soignant.firstName }} {{ soignant.lastName }}</div>
                                 </div>
@@ -311,6 +311,11 @@ import {mapGetters} from "vuex";
   .div-card{
     width: 100%;
   }
+
+  .div-card:hover{
+    box-shadow: 1px 3px 6px rgba(213, 228, 246, 0.8);
+    transition: all 0.5s;
+  }
   .button-create{
     outline: none;
     border: none;
@@ -386,8 +391,14 @@ import {mapGetters} from "vuex";
     width: 100%;
   }
   .img-dashboard{
-    max-height: 90px;
-    max-width: 90px;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 4px 4px 0px 0px;
+  }
+
+  .img-dashboard-soignants{
+    max-height: 100px;
+    max-width: 100px;
   }
 
   .button-add{

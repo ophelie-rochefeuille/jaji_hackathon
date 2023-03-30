@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="main-app-div d-inline-flex" @click="toogle">
+  <div class="main-app-div" @click="toogle">
   <SideBar />
     <router-view class="pages" />
   </div>
