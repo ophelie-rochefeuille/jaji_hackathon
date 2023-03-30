@@ -2,6 +2,7 @@
 import Home from '../components/HomePage.vue'
 import LoginForm from '../components/LoginForm.vue'
 import DashBoard from '../components/DashBoard.vue'
+import FormationPage from '../components/FormationPage.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
@@ -44,6 +45,11 @@ const routes = [
     path: '/soignant/:id',
     name: 'soignant_id',
     component: PersonalFileProfesional
+  },
+  {
+    path: '/formation',
+    name: 'formation',
+    component: FormationPage
   }
 ]
 
