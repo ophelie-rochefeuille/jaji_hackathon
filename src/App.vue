@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="main-app-div d-inline-flex" @click="toogle">
+  <div class="main-app-div" @click="toogle">
   <SideBar />
     <router-view class="pages" />
   </div>
@@ -14,16 +14,14 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import url("./assets/fonts/fonts.scss");
 
-<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   width: 100% !important;
-  height: 100% !important;
+
 }
 
 body, html {

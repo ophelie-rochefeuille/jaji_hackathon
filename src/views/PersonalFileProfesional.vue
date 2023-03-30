@@ -85,7 +85,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
 
 .main-div-profesional{
   width: 100%;
