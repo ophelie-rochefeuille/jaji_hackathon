@@ -20,6 +20,29 @@
           </div>
         </div>
         </router-link>
+        <button @click="showModal = true">Open Modal</button>
+            <ModalPopup v-if="showModal" @close="showModal = false" >
+              <ProfilProfesional/>
+              <button @click="showModal = false">ALLO Fermer la fenêtre modale</button>
+            </ModalPopup>
+            
+            <ModalPopup v-if="showModal === 5" @close="showModal = patate" >
+              <FormationForm/>
+            </ModalPopup>
+
+            
+            <div class="vue-modal" v-show="showModal">
+    <div class="vue-modal-inner">
+      <div class="vue-modal-content">
+        <font-awesome-icon class="close-cross" name="close" @click="$emit('close')" icon="fas fa-close" />
+        <slot />
+
+      </div>
+    </div>
+
+  </div>
+
+
       </div>
     </div>
   </div>
@@ -33,6 +56,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(fas);
 
+import FormationForm from "@/components/forms/FormationForm.vue";
+import ProfilProfesional from "@/views/PersonalFileProfesional.vue";
+
 export default {
   methods: {
     filteredList() {
@@ -42,6 +68,12 @@ export default {
 }
   },
   components: {FontAwesomeIcon},
+  components: { FormationForm, ProfilProfesional},
+  data(){
+    return {
+      showModal: false
+    }
+  },
   created() {
     this.$store.dispatch("fetchSoignants");
   },

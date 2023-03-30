@@ -100,15 +100,9 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
-<style scoped lang="scss">
-
-
-=======
 <style scoped>
 * {
   background-color: #c9B3D5}
->>>>>>> a84e5e6 (CSS Profil Soignant V1 post SASS / Validation)
 .main-div-profesional{
   display: flex;
   width: 100%;
