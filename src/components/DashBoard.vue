@@ -1,71 +1,70 @@
 <template>
-    <div class="d-inline-flex dashboard-container" style="width: 100% !important; height : 100% !important">
-        <side-bar></side-bar>
-        <br>
-        <div class="container-fluid main-content d-flex justify-content-center align-items-center"> <!-- add main-content class -->
-            <div class="container d-block align-items-center">
-                <h1 class="my-3" style="text-align: start;">Mes soins</h1>
-                <div class="col-12 w-100 mb-2 d-inline-flex justify-content-center align-items-center" style="height: 21%; border: 3px solid #d5e4f6 !important; border-radius: 8px;">
+    <div class=" dashboard-container">
+        <div>
+            <div>
+                <span class="my-3 text-start">Mes parcours</span>
+                <div class="first-div-dashboard mb-2" >
                     <div>
-                        <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousParcours()" style="margin-right: 2rem !important; width: 34px !important; height: 34px !important;">
+                        <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousParcours()" >
                             <font-awesome-icon icon="fas fa-chevron-left" />
                         </button>
                     </div>
-                    <div class="col-10 d-flex align-items-center justify-content-center" style="max-height: 42px;">
-                        <div class="d-inline-flex justify-content-between w-100 align-items-center">
+                    <div class="main-div-items">
+                        <div class="items-dashboard">
                             <div v-for="parcours in filteredParcours" :key="parcours.id" class="text-center parcours-block" @click.prevent="redirectToParcours(parcours.id)">
-                                <img src="../assets/logo-jaji.png" style="max-width: 60px; max-height: 50px;">
-                                <div style="font-size: small !important;">{{ parcours.title }}</div>
+                                <img class="img-dashboard" src="../assets/logo-jaji.png" >
+                                <div >{{ parcours.title }}</div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-primary rounded-circle next-btn" @click.prevent="nextParcours()" style="margin-left: 2rem !important; width: 34px !important; height: 34px !important;">
+                        <button class="btn btn-primary rounded-circle next-btn" @click.prevent="nextParcours()" >
                             <font-awesome-icon icon="fas fa-chevron-right" />
                         </button>
                     </div>
                 </div>
-                <h1 class="my-3" style="text-align: start;">Mes formations</h1>
-                <div class="col-12 w-100 mb-2 d-inline-flex justify-content-center align-items-center" style="height: 21%; border: 3px solid #d5e4f6 !important; border-radius: 8px;">
+
+                <span class="my-3 text-start">Mes formations</span>
+                <div class="second-div-dashboard mb-2" >
                     <div>
-                        <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousFormations()" style="margin-right: 2rem !important; width: 34px !important; height: 34px !important;">
+                        <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousFormations()" >
                             <font-awesome-icon icon="fas fa-chevron-left" />
                         </button>
                     </div>
-                    <div class="col-10 d-flex align-items-center justify-content-center" style="max-height: 42px;">
-                        <div class="d-inline-flex justify-content-between w-100 align-items-center">
+                    <div class="main-div-items">
+                        <div class="items-dashboard">
                             <div v-for="formation in filteredFormations" :key="formation.id" class="text-center formation-block" @click.prevent="redirectToFormation(formation.id)">
-                                <img src="../assets/logo-jaji.png" style="max-width: 60px; max-height: 50px;">
-                                <div style="font-size: small !important;">{{ formation.title }}</div>
+                                <img class="img-dashboard" src="../assets/logo-jaji.png" >
+                                <div >{{ formation.title }}</div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-primary rounded-circle next-btn" @click.prevent="nextFormations()" style="margin-left: 2rem !important; width: 34px !important; height: 34px !important;">
+                        <button class="btn btn-primary rounded-circle next-btn" @click.prevent="nextFormations()" >
                             <font-awesome-icon icon="fas fa-chevron-right" />
                         </button>
                     </div>
                 </div>
-                <h1 class="my-3" style="text-align: start;">Soignants</h1>
-                <div class="col-12 w-100 mb-2 d-inline-flex justify-content-center align-items-center" style="height: 30%; border: 3px solid #d5e4f6 !important; border-radius: 8px;">
+                <span class="my-3 text-start">Liste des soignants</span>
+                <div class=" third-div-dashboard  mb-2" >
                     <div>
-                        <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousSoignants()" style="margin-right: 2rem !important; width: 34px !important; height: 34px !important;">
+                        <button class="btn btn-primary rounded-circle prev-btn" @click.prevent="previousSoignants()" >
                             <font-awesome-icon icon="fas fa-chevron-left" />
                         </button>
                     </div>
-                    <div class="col-10 d-flex align-items-center justify-content-center" style="max-height: 42px;">
-                        <div class="d-inline-flex justify-content-between w-100 align-items-center">
+                    <div class="main-div-items">
+                        <div class="items-dashboard">
                             <div v-for="soignant in filteredSoignants" :key="soignant.id" class="text-center soignant-block" @click.prevent="redirectToSoignant(soignant.id)">
                                 <div>
-                                    <img src="../assets/logo-jaji.png" style="max-width: 60px; max-height: 50px;">
-                                    <br>
-                                    <div style="font-size: small !important;">{{ soignant.title }}</div>
+                                    <img class="img-dashboard" src="../assets/logo-jaji.png">
+
+                                    <div>{{ soignant.title }}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-primary rounded-circle next-btn" @click.prevent="nextSoignants()" style="margin-left: 2rem !important; width: 34px !important; height: 34px !important;">
+                        <button class="btn btn-primary rounded-circle next-btn" @click.prevent="nextSoignants()" >
                             <font-awesome-icon icon="fas fa-chevron-right" />
                         </button>
                     </div>
@@ -76,7 +75,6 @@
   </template>
   
   <script>
-  import SideBar from './SideBar.vue'
 //   import axios from 'axios'; // pour faire des requêtes http
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -87,7 +85,6 @@
   export default {
     components: {
         'font-awesome-icon': FontAwesomeIcon,
-        'side-bar': SideBar,
       
     },
     data () {
@@ -341,63 +338,52 @@
   };
   </script>
   
-  <style scoped>
+  <style scoped lang="scss">
 
-  *{
-    height: 100%;
+  .main-div-items{
+    width: 100%;
   }
-  .main-content {
-    width: 90%; /* Set the width of the main content to 87% (100% - 13% for the sidebar) */
-    margin-left: 10%; /* Set the left margin to 13% (the width of the sidebar) */
-    height: 100%;
-    }
+  .img-dashboard{
+    max-height: 90px;
+    max-width: 90px;
+  }
 
-    h1{
-        font-size: 28px !important;
+  .items-dashboard{
+    display: flex;
+    justify-content: space-around;
+  }
+    .first-div-dashboard,
+    .second-div-dashboard,
+    .third-div-dashboard{
+      padding: 0.5rem;
+      margin: 0.5rem 3rem;
+     // box-shadow: 2px 3px 6px rgba(213, 228, 246, 1);
+      border: 2px solid #d5e4f6;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
   .dashboard-container {
-    height: 100% !important;
-    flex-direction: row; /* Set the flex-direction property to row */
-    width: 100% !important; /* Set the width to 100% */
-    display: inline-flex !important;
+    margin-left: 7.5rem;
+    flex-direction: row;
+    span{
+      font-size: 16px;
+      text-align: start;
+    }
   }
-  .container-fluid {
-    padding: 0;
-    background-color: #f5f6f7;
-  }
-  
-  .container-fluid .container {
-    background-color: #ffffff;
-    margin: 2rem;
-    height: calc(100% - 4rem); /* Set the height to 100% minus the top and bottom margin */
-    width: calc(100% - 4rem);
-    border-radius: 8px;
-  }
+
 
   .formation-block,
-  .parcours-block {
-    width: 110px;
-    height: 110px;
+  .parcours-block,
+  .soignant-block{
     border: 1px solid #d5e4f6;
     border-radius: 8px;
-    margin: 0 1rem;
-    padding: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
     text-align: center;
   }
 
-  .soignant-block {
-    width: 110px;
-    height: 150px;
-    border: 1px solid #d5e4f6;
-    border-radius: 8px;
-    margin: 0 1rem;
-    text-align: center;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
-  }
 
   .next-btn:hover,
   .prev-btn:hover {
