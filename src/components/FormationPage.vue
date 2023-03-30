@@ -1,12 +1,14 @@
 <template>
     <formation-form v-show="showCreateFormModal" @close="showCreateFormModal = false"></formation-form>
     <div class=" formation-container">
-      <div class="inner-container d-block">
-        <div class="header-bloc mx-5 d-flex justify-content-between">
-          <h2 class="text-primary">Formations</h2>
+      <div class="header-bloc px-3 py-2 d-flex justify-content-between">
+          <div class="header-title">
+            <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
+          </div>
           <button class="btn btn-primary" @click.prevent="createForm()">Ajouter une formation</button>
         </div>
-        <div class="formations-list my-5 mx-5">
+      <div class="inner-container d-block">
+        <div class="formations-list mx-5">
           <!-- <div class="formations">
             <div class="formation" v-for="formation in filteredFormations" :key="formation.id">
               <div class="formation-title">
@@ -15,8 +17,8 @@
               </div>
             </div>
           </div> -->
-          <div class="formations my-4">
-            <div class="row my-5" v-for="row in filteredFormations" :key="row[0].id">
+          <div class="formations pt-5">
+            <div class="row my-5 d-flex justify-content-between" v-for="row in filteredFormations" :key="row[0].id">
               <div class="col-4 formation" v-for="formation in row" :key="formation.id">
                 <div class="formation-title">
                   <img src="../assets/jaji.svg" :alt="formation.title" class="formation-image my-3" />
@@ -25,7 +27,7 @@
               </div>
             </div>
           </div>
-          <div class="pagination-controls pt-4">
+          <div class="pagination-controls" style="margin-top: 3.5rem;">
             <button @click="prevPage" class="btn btn-primary rounded-circle next-btn" :disabled="currentPage === 1">
               <font-awesome-icon icon="fas fa-chevron-left" />
             </button>
@@ -112,6 +114,18 @@
 
 
 <style scoped>
+  .header-bloc{
+    /* margin-left: 2rem;
+    margin-right: 1rem; */
+    margin: 3% 1rem 3% 2rem;
+    width: calc(100% - 4rem)!important;
+  }
+  .header-title {
+    border-left: 2px solid #000000;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+  }
   .formation-container {
     flex-direction: row;
     margin-left: 7rem;
@@ -122,21 +136,25 @@
 
   .inner-container {
     flex-direction: row;
-    height: calc(100% - 4%)!important;
-    width: calc(100% - 4%)!important;
-    margin: 2%;
-    background-color: #f5f6f7;
-    border-radius: 8px;
-  }
-
-  .header-bloc {
-    padding-top: 4%;
+    height: 80%!important;
+    width: calc(100% - 4rem)!important;
+    margin: 0 2rem 0 2rem;
+    /* background-color: #f5f6f7; */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   }
 
   .formations-list {
-    border: 3px solid #91b5e9;
+    margin-top: 2rem;
+  }
+
+  .header-bloc {
+    margin-top: 3%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .formations-list {  
     border-radius: 8px;
-    height: 80% !important;
+    height: 100% !important;
     margin-top: 2rem;
   }
 
@@ -165,9 +183,15 @@
     color: #1f2f42 !important;
   }
 
+  .formation {
+    /* border: 1px solid black; */
+    width: 25%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    background-color: #ffffff;
+  }
   .formation:hover {
     background-color: #d5e4f6;
-    border-radius: 8px;
     cursor: pointer;
   }
 </style>
