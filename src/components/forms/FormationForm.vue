@@ -72,7 +72,7 @@
         </div>
         <div class="modal-buttons">
           <button v-show="currentPage !== 1" @click="prevPage">Prev</button>
-          <button @click="showModal = false">Fermer la fenêtre modale</button>
+          <button @click="closeModal">Fermer la fenêtre modale</button>
           <button v-show="currentPage !== 3" @click="nextPage">Next</button>
         </div>
       </div>
@@ -80,6 +80,7 @@
   </template>
   
   <script>
+
   export default {
     data() {
       return {
@@ -99,6 +100,10 @@
       };
     },
     methods: {
+      closeModal() {
+        this.showModal = false;
+        this.$emit('close');
+      },
         createQuiz() {
       // Traitement de la création du questionnaire
       console.log('Questions :', this.questions);
