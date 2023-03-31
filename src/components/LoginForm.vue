@@ -102,8 +102,8 @@ export default {
               axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
               localStorage.setItem('authToken', token)
             }
-
             setAuthToken(response.data.token)
+            window.open('http://127.0.0.1:8080/');
 
           }).catch(error => {
         console.log(error.response.data);
