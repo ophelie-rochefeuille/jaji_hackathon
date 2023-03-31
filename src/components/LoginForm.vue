@@ -63,6 +63,7 @@
 
 <script>
 import axios from 'axios';
+//import decode from 'jwt-decode';
 
 export default {
   data() {
@@ -94,9 +95,16 @@ export default {
          password: this.passwordUser,
          email: this.emailUser
       };
+
       axios.post('http://127.0.0.1:8000/api/login_check', formData)
           .then(response => {
-            console.log(response.data);
+            function setAuthToken(token) {
+              axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+              localStorage.setItem('authToken', token)
+            }
+
+            setAuthToken(response.data.token)
+
           }).catch(error => {
         console.log(error.response.data);
       }).finally(() => {
@@ -117,6 +125,7 @@ export default {
       };
       axios.post('http://localhost:9000/api/users/forget', formData)
           .then(response => {
+
             console.log(response.data);
           })
           .catch(error => {
