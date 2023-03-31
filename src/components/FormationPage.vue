@@ -1,11 +1,10 @@
 <template>
     <formation-form v-show="showCreateFormModal" @close="showCreateFormModal = false"></formation-form>
     <div class=" formation-container">
-      <div>
-        <div class="first-div-soignant">
-          <h4>Dashboard</h4>
-          <button class="btn btn-primary" @click.prevent="createForm()">Ajouter une formation</button>
-
+      <div class="header-bloc px-3 py-2 d-flex justify-content-between">
+          <div class="header-title">
+            <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
+          </div>
         </div>
       <div class="inner-container d-block">
         <div class="formations-list mx-5">
@@ -33,7 +32,6 @@
         </div>
       </div>
     </div>
-    </div>
 </template>
 
 <script>
@@ -52,8 +50,7 @@
     data() {
       return {
         currentPage: 1,
-        rowsPerPage: 3,
-        showCreateFormModal: false
+        rowsPerPage: 3
       };
     },
     computed: {
@@ -69,9 +66,6 @@
         }
         return rows.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
       },
-    },
-    created() {
-      this.$store.dispatch("fetchFormations");
     },
     watch: {
       month () {
