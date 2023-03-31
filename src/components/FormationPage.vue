@@ -3,7 +3,7 @@
     <div class=" formation-container">
       <div>
         <div class="first-div-soignant">
-          <h4>Dashboard</h4>
+          <h4>Formations</h4>
           <button class="btn btn-primary" @click.prevent="createForm()">Ajouter une formation</button>
 
         </div>
@@ -33,6 +33,7 @@
         </div>
       </div>
     </div>
+    </div>
 </template>
 
 <script>
@@ -54,9 +55,6 @@
         rowsPerPage: 3,
         showCreateFormModal: false
       };
-    },
-    created() {
-      this.$store.dispatch("fetchFormations");
     },
     computed: {
         ...mapGetters([
@@ -103,7 +101,6 @@
 .first-div-soignant{
   font-family: "source-pro-regular";
   padding: 1rem;
-  margin-left: 1rem;
   display: flex;
   justify-content: space-between;
   position: sticky;

@@ -1,16 +1,34 @@
 
 
 <template>
-  <div class="main-app-div" @click="toogle">
+  <LoginForm v-if="token === ''" />
+  <div v-if="token" class="main-app-div" @click="toogle">
   <SideBar />
     <router-view class="pages" />
   </div>
+
 </template>
 
 <script>
 import SideBar from './components/SideBar.vue'
+import LoginForm from "@/components/LoginForm.vue";
 export default {
-  components: { SideBar },
+  components: { SideBar, LoginForm },
+  data() {
+    return {
+      token: ''
+    }
+  },
+  mounted() {
+    if (localStorage.name) {
+      this.token = localStorage.authToken;
+    }
+  },
+  watch: {
+    name(newName) {
+      localStorage.authToken = newName;
+    }
+  },
 };
 </script>
 
@@ -42,7 +60,7 @@ body, html {
 
 .pages{
   margin-left: 6.5rem;
-  background-color: #f5f5f5;
+
 
 }
 .btn-primary {
