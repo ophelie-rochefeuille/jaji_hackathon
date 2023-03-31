@@ -67,9 +67,6 @@
         return rows.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
       },
     },
-    created() {
-      this.$store.dispatch("fetchFormations");
-    },
     watch: {
       month () {
         this.$store.dispatch("fetchFormations");
