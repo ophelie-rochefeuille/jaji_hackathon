@@ -469,7 +469,6 @@ import {mapGetters} from "vuex";
   .first-div-soignant{
     font-family: "source-pro-regular";
     padding: 1rem;
-    margin-left: 1rem;
     display: flex;
     justify-content: space-between;
     position: sticky;
@@ -510,7 +509,7 @@ import {mapGetters} from "vuex";
       align-items: center;
     }
   .dashboard-container {
-    margin-left: 7.5rem;
+    margin-left: 7rem;
     flex-direction: row;
     span{
       font-size: 16px;

@@ -65,12 +65,13 @@ export default {
   border: none;
   border-radius: 4px;
   background-color: white;
-  margin-left: 7.5rem;
+  margin-left: 7rem;
 }
 .main-div-soignant{
   margin: 1rem 0.5rem;
   display: flex;
   justify-content: space-between;
+
 
 
 }
@@ -125,7 +126,6 @@ a{
 .first-div-soignant{
   font-family: "source-pro-regular";
   padding: 1rem;
-  margin-left: 1rem;
   display: flex;
   justify-content: space-between;
   position: sticky;

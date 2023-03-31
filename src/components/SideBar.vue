@@ -34,8 +34,7 @@
         data() {
             return {
                 menuItems: [
-                { id: 1, title: 'Accueil', icon: "house", link: 'dashboard' },
-                { id: 2, title: 'Profil', icon: "user", link: 'profil' },
+                { id: 1, title: 'Accueil', icon: "house", link: '/' },
                 { id: 3, title: 'Suivi soins', icon: "notes-medical", link: 'soins' },
                 { id: 4, title: 'Formations', icon: "book", link: 'formation' },
                 { id: 5, title: 'Soignants', icon: "user-doctor", link: '/soignant' },
