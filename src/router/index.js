@@ -3,6 +3,7 @@ import LoginForm from '../components/LoginForm.vue'
 import DashBoard from '../components/DashBoard.vue'
 import SuiviSoin from '../components/SuiviSoin.vue'
 import FormationPage from '../components/FormationPage.vue'
+import FormationIdPage from '../components/MySoins.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
@@ -41,6 +42,11 @@ const routes = [
     path: '/formation',
     name: 'formation',
     component: FormationPage
+  },
+  {
+    path: '/formation/:id',
+    name: 'formation_id',
+    component: FormationIdPage
   },
   {
     path: '/soins',
