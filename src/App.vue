@@ -60,8 +60,6 @@ body, html {
 
 .pages{
   margin-left: 6.5rem;
-
-
 }
 .btn-primary {
   background-color: #ffd466 !important;
