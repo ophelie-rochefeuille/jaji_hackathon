@@ -96,7 +96,7 @@
 <style scoped>
 
   .texte{
-    margin-left: 201px;
+    margin-left: 3rem;
     width: 873px;
     height: 144px;
   }
@@ -175,8 +175,9 @@
     color:#ffffff;
   }
   .left-img img {
-    height: 900px; position: absolute;
-    transform: translate(110%,-15%);
+    height: 900px; 
+    position: fixed;
+    transform: translate(42%,-15%);
   }
   
   .chronologie {

@@ -60,7 +60,11 @@ body, html {
 
 .pages{
   margin-left: 6.5rem;
+<<<<<<< HEAD
 
+=======
+  /*background-color: #f5f5f5;*/
+>>>>>>> e75d821 (correction bugs css)
 
 }
 .btn-primary {
