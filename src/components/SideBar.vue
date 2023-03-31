@@ -54,11 +54,11 @@
           logout() {
             function clearAuthToken() {
               axios.defaults.headers.common['Authorization'] = ''
-              localStorage.removeItem('authToken')
+              localStorage.setItem('authToken', '')
             }
 
             clearAuthToken()
-            window.open('http://127.0.0.1:8080/login');
+            window.open('http://127.0.0.1:8080');
           },
             redirect(link) {
                 this.$router.push(link );

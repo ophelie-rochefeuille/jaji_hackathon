@@ -1,8 +1,7 @@
 
-
 <template>
-  <LoginForm v-if="token === ''" />
-  <div v-if="token" class="main-app-div" @click="toogle">
+  <LoginForm v-if="token===null" />
+  <div v-else class="main-app-div" @click="toogle">
   <SideBar />
     <router-view class="pages" />
   </div>
@@ -10,8 +9,10 @@
 </template>
 
 <script>
-import SideBar from './components/SideBar.vue'
 import LoginForm from "@/components/LoginForm.vue";
+
+
+import SideBar from './components/SideBar.vue'
 export default {
   components: { SideBar, LoginForm },
   data() {
@@ -20,13 +21,27 @@ export default {
     }
   },
   mounted() {
+    this.token = localStorage.getItem('authToken');
     if (localStorage.name) {
       this.token = localStorage.authToken;
+      console.log(this.token)
     }
   },
+  methods: {
+
+  },
+  computed:{
+    getAuthToken() {
+      return localStorage.getItem('authToken')
+    },
+  },
   watch: {
+    getAuthToken() {
+      return localStorage.getItem('authToken')
+    },
     name(newName) {
       localStorage.authToken = newName;
+      console.log(this.token)
     }
   },
 };
