@@ -1,22 +1,22 @@
 <template>
-    <formation-form v-show="showCreateFormModal" @close="showCreateFormModal = false"></formation-form>
-    <div class=" formation-container">
+    <!-- <formation-form v-show="showCreateFormModal" @close="showCreateFormModal = false"></formation-form> -->
+    <div class="soin-container">
       <div class="header-bloc px-3 py-2 d-flex justify-content-between">
           <div class="header-title">
-            <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
+            <h2 class="text-primary" style="margin:0 2rem !important">Suivi de Soins</h2>
           </div>
-          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une formation</button>
+          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une soins</button>
         </div>
       <div class="inner-container d-block">
-        <div class="formations-list mx-5">
+        <div class="soins-list mx-5">
 
-          <div class="formations pt-4">
-            <div class="row my-5 d-flex" v-for="row in filteredFormations" :key="row[0].id">
-              <div class="col-4 formation" v-for="formation in row" :key="formation.id">
-                <div class="formation-title">
-                  <!-- <img src="../assets/jaji.svg" :alt="formation.title" class="formation-image my-3" /> -->
-                  <img class="img-dashboard my-3" :src="formation.image" :alt="formation.title">
-                  <span class="text-primary">{{ formation.title }}</span>
+          <div class="soins pt-4">
+            <div class="row my-5 d-flex" v-for="row in filteredSoins" :key="row[0].id">
+              <div class="col-4 soin" v-for="soin in row" :key="soin.id">
+                <div class="soin-title">
+                  <img src="../assets/jaji.svg" :alt="soin.title" class="soin-image my-3" />
+                  <!-- <img class="img-dashboard my-3" :src="soin.image" :alt="soin.title"> -->
+                  <span class="text-primary">{{ soin.title }}</span>
                 </div>
               </div>
             </div>
@@ -26,7 +26,7 @@
               <font-awesome-icon icon="fas fa-chevron-left" />
             </button>
             <span class="page-number mx-2">{{ currentPage }}</span>
-            <button @click="nextPage" class="btn btn-primary rounded-circle next-btn" :disabled="currentPage >= Math.ceil(getFormations.length / (rowsPerPage * 3))">
+            <button @click="nextPage" class="btn btn-primary rounded-circle next-btn" :disabled="currentPage >= Math.ceil(getParcours.length / (rowsPerPage * 3))">
               <font-awesome-icon icon="fas fa-chevron-right" />
             </button>
           </div>
@@ -39,14 +39,14 @@
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { fas } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-  import FormationForm from './forms/FormationForm.vue';
+//   import FormationForm from './forms/FormationForm.vue';
   import {mapGetters} from "vuex";
 
   library.add(fas);
   export default {
     components: {
         'font-awesome-icon': FontAwesomeIcon,
-        'formation-form': FormationForm,
+        // 'formation-form': FormationForm,
     },
     data() {
       return {
@@ -56,36 +56,36 @@
       };
     },
     created() {
-      this.$store.dispatch("fetchFormations");
+      this.$store.dispatch("fetchParcours");
     },
     computed: {
       ...mapGetters([
-        'getFormations'
+        'getParcours'
       ]),
-      filteredFormations() {
+      filteredSoins() {
         const rows = [];
         const rowSize = 3;
-        for (let i = 0; i < this.getFormations.length; i += rowSize) {
-          const row = this.getFormations.slice(i, i + rowSize);
+        for (let i = 0; i < this.getParcours.length; i += rowSize) {
+          const row = this.getParcours.slice(i, i + rowSize);
           rows.push(row);
         }
         return rows.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
       },
     },
     methods: {
-      createForm() {
-        this.showCreateFormModal = true;
-      },
-      nextPage() {
-        if (this.currentPage < Math.ceil(this.getFormations.length / (this.rowsPerPage * 3))) {
-          this.currentPage++;
+        createForm() {
+            this.showCreateFormModal = true;
+        },
+        nextPage() {
+            if (this.currentPage < Math.ceil(this.getParcours.length / (this.rowsPerPage * 3))) {
+                this.currentPage++;
+            }
+        },
+        prevPage() {
+            if (this.currentPage > 1) {
+            this.currentPage--;
+            }
         }
-      },
-      prevPage() {
-        if (this.currentPage > 1) {
-          this.currentPage--;
-        }
-      }
     }
   };
 </script>
@@ -101,7 +101,7 @@
     display: flex;
     align-items: center;
   }
-  .formation-container {
+  .soin-container {
     flex-direction: row;
     margin-left: 7rem;
     background-color: #ffffff;
@@ -116,7 +116,7 @@
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .formations-list {
+  .soins-list {
     margin-top: 2rem;
   }
 
@@ -124,13 +124,13 @@
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .formations-list {  
+  .soins-list {  
     border-radius: 8px;
     height: 100% !important;
     margin-top: 2rem;
   }
 
-  .formations {
+  .soins {
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -138,11 +138,11 @@
     justify-content: center;
   }
 
-  .formations .row {
+  .soins .row {
     width: 90%
   }
 
-  .formation-title {
+  .soin-title {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -155,7 +155,7 @@
     color: #1f2f42 !important;
   }
 
-  .formation {
+  .soin {
     /* border: 1px solid black; */
     width: 25%;
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
@@ -163,7 +163,7 @@
     background-color: #ffffff;
     margin: 0 4%;
   }
-  .formation:hover {
+  .soin:hover {
     background-color: #d5e4f6;
     cursor: pointer;
   }
