@@ -5,7 +5,7 @@
           <div class="header-title">
             <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
           </div>
-          <button class="btn btn-primary" @click.prevent="createForm()">Ajouter une formation</button>
+          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une formation</button>
         </div>
       <div class="inner-container d-block">
         <div class="formations-list mx-5">
@@ -129,7 +129,7 @@
     width: calc(100% - 4rem)!important;
     margin: 0 2rem 0 2rem;
     /* background-color: #f5f6f7; */
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 3px 6px rgb(0 0 0 / 10%);
   }
 
   .formations-list {
@@ -138,7 +138,7 @@
 
   .header-bloc {
     margin-top: 3%;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 3px 6px rgb(0 0 0 / 10%);
   }
 
   .formations-list {  
@@ -175,7 +175,7 @@
   .formation {
     /* border: 1px solid black; */
     width: 25%;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 3px 6px rgb(0 0 0 / 10%);
     padding: 10px;
     background-color: #ffffff;
   }
