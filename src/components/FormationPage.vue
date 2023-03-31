@@ -1,11 +1,12 @@
 <template>
     <formation-form v-show="showCreateFormModal" @close="showCreateFormModal = false"></formation-form>
     <div class=" formation-container">
-      <div class="header-bloc px-3 py-2 d-flex justify-content-between">
-          <div class="header-title">
-            <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
-          </div>
+      <div>
+        <div class="first-div-soignant">
+          <h4>Dashboard</h4>
           <button class="btn btn-primary" @click.prevent="createForm()">Ajouter une formation</button>
+        </div>
+
         </div>
       <div class="inner-container d-block">
         <div class="formations-list mx-5">
@@ -39,6 +40,7 @@
   import { fas } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import FormationForm from './forms/FormationForm.vue';
+  import {mapGetters} from "vuex";
 
   library.add(fas);
   export default {
@@ -48,40 +50,32 @@
     },
     data() {
       return {
-        formations: [
-          { id: 1 , title: 'Formation 1'},
-          { id: 2 , title: 'Formation 2'},
-          { id: 3 , title: 'Formation 3'},
-          { id: 4 , title: 'Formation 4'},
-          { id: 5 , title: 'Formation 5'},
-          { id: 6 , title: 'Formation 6'},
-          { id: 7 , title: 'Formation 7'},
-          { id: 8 , title: 'Formation 8'},
-          { id: 9 , title: 'Formation 9'},
-          { id: 10 , title: 'Formation 10'},
-          { id: 11 , title: 'Formation 11'},
-          { id: 12 , title: 'Formation 12'},
-          { id: 13 , title: 'Formation 13'}
-        ],
         currentPage: 1,
         rowsPerPage: 3,
         showCreateFormModal: false
       };
     },
     computed: {
-      // filteredFormations () {
-      //   return this.formations.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
-      // },
-      // computed: {
+        ...mapGetters([
+          'getSoignants', 'getParcours', 'getFormations'
+        ]),
       filteredFormations() {
         const rows = [];
         const rowSize = 3;
-        for (let i = 0; i < this.formations.length; i += rowSize) {
-          const row = this.formations.slice(i, i + rowSize);
+        for (let i = 0; i < this.getFormations.length; i += rowSize) {
+          const row = this.getFormations.slice(i, i + rowSize);
           rows.push(row);
         }
         return rows.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
       },
+    },
+    created() {
+      this.$store.dispatch("fetchFormations");
+    },
+    watch: {
+      month () {
+        this.$store.dispatch("fetchFormations");
+      }
     },
     methods: {
       createForm() {
@@ -89,7 +83,7 @@
 
       },
       nextPage() {
-        if (this.currentPage < Math.ceil(this.formations.length / (this.rowsPerPage * 3))) {
+        if (this.currentPage < Math.ceil(this.getFormations.length / (this.rowsPerPage * 3))) {
           this.currentPage++;
         }
       },
@@ -106,7 +100,30 @@
 
 
 
-<style scoped>
+<style scoped lang="scss">
+@import url("../assets/fonts/fonts.scss");
+
+.first-div-soignant{
+  font-family: "source-pro-regular";
+  padding: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.05);
+  top: 0;
+  background-color: white;
+  z-index: 10;
+button{
+  font-size: 14px;
+  font-family: source-pro-light;
+}
+}
+
+h4{
+  padding-left: 1rem;
+  border-left: 3px solid rgba(0, 0, 0, 0.5);
+}
   .header-bloc{
     margin: 3% 1rem 3% 2rem;
     width: calc(100% - 4rem)!important;

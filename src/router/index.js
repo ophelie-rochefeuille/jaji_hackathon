@@ -1,5 +1,4 @@
 
-import Home from '../components/HomePage.vue'
 import LoginForm from '../components/LoginForm.vue'
 import DashBoard from '../components/DashBoard.vue'
 import FormationPage from '../components/FormationPage.vue'
@@ -16,23 +15,14 @@ import PersonalFileProfesional from "@/views/PersonalFileProfesional.vue";
 library.add(faUserSecret)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Hello',
-    component: Home
-  },
-  // {
-  //   path: '/login',
-  //   name: 'connexion',
-  //   component: ConnexionPage
-  // },
+
   {
     path: '/login',
     name: 'login',
     component: LoginForm
   },
   {
-    path: '/dashboard',
+    path: '/',
     name: 'dashboard',
     component: DashBoard
   },
