@@ -82,9 +82,9 @@
     <div class="step-one " v-show="currentPage === 1">
       <div class="first-div-modal">
         <label>Détails du parcours *</label>
-        <input class="input" type="text" placeholder="Titre">
+        <input class="input" type="text" placeholder="Titre" v-model="title">
         <label>Description *</label>
-        <input class="input" type="text" placeholder="Description">
+        <input class="input" type="text" placeholder="Description" v-model="description">
       </div>
       <div class="buttons-div">
         <button v-show="currentPage !== 1" @click="prevPage"><font-awesome-icon icon="fas fa-chevron-left" /></button>
@@ -109,25 +109,26 @@
       </div>
     </div>
 
+
     <div class="step-two" v-show="currentPage === 3">
       <div class="third-div-modal">
           <div class="main-div-questions">
             <label for="question1">Question 1 :</label>
-            <input type="text" id="question1">
+            <input type="text" id="question1" v-model="question1">
             <div class="div-response">
-              <input type="radio" id="q1_true" name="q1" value="true">
+              <input type="radio" id="q1_true" v-model="rep1" name="q1" value="true">
               <span for="q1_true">Vrai</span>
             </div>
             <div class="div-response">
-              <input type="radio" id="q1_false" name="q1" value="false">
+              <input type="radio" id="q1_false" v-model="rep1" name="q1" value="false">
               <span for="q1_false">Faux</span>
             </div>
           </div>
           <div class="main-div-questions">
             <label for="question2">Question 2 :</label>
-            <input type="text" id="question2">
+            <input type="text" id="question2" v-model="question2">
             <div class="div-response">
-              <input type="radio" id="q2_true" name="q2" value="true">
+              <input type="radio" v-model="rep2" id="q2_true" name="q2" value="true">
               <span for="q2_true">Vrai</span>
             </div>
             <div class="div-response">
@@ -135,10 +136,11 @@
               <span for="q2_false">Faux</span>
             </div>
           </div>
-          <button class="button-create">Créer le questionnaire</button>
-
+        <label for="video-link">Lien de la vidéo et image :</label>
+        <input type="url" id="video-link" v-model="videoLink">
       </div>
       <div class="buttons-div">
+        <button @click="postData()" class="button">Valider la création</button>
         <button v-show="currentPage !== 1" @click="prevPage"><font-awesome-icon icon="fas fa-chevron-left" /></button>
         <button v-show="currentPage !== 3" class="button-next" @click="nextPage"><font-awesome-icon icon="fas fa-chevron-right" /></button>
       </div>
@@ -147,7 +149,7 @@
   </template>
   
   <script>
-//   import axios from 'axios'; // pour faire des requêtes http
+ import axios from 'axios'; // pour faire des requêtes http
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { fas } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -170,9 +172,22 @@ import {mapGetters} from "vuex";
     },
     data () {
       return {
+        fileUpdate: null,
+        title:null,
+        description:null,
+        etape: {},
+        question1:null,
+        rep1:null,
+        question2:null,
+        rep2:null,
+        videoLink: null,
+        tag:null,
+        video:null,
         currentPage: 1,
         value: '',
+        valueTag:'',
         values: [],
+        valuesTag: [],
         open: false,
         stepOne: true,
         stepTwo: false,
@@ -210,6 +225,22 @@ import {mapGetters} from "vuex";
         }
     },
     methods: {
+      postData(){
+        const formData = new FormData()
+        formData.append('title', this.title)
+        formData.append('description', this.description)
+        formData.append('chronologie',this.values)
+        formData.append('question1', this.question1)
+        formData.append('rep1', this.rep1)
+        formData.append('question2', this.question2)
+        formData.append('rep2', this.rep2)
+        formData.append('video_url', this.videoLink)
+        axios.post(`http://localhost:8000/parcours/new`, formData)
+            .then( response => console.log(response), this.$store.dispatch("fetchParcours"))
+            .catch(error => console.log(error))
+        this.isOpen = !this.isOpen
+        this.$store.dispatch("fetchParcours");
+      },
       nextPage() {
         this.currentPage++;
       },
@@ -219,9 +250,16 @@ import {mapGetters} from "vuex";
       removeValues(index) {
         this.values.splice(index, 1);
       },
+      removeValuesTag(index) {
+        this.valuesTag.splice(index, 1);
+      },
       addValue() {
         this.values.push(this.value);
         this.value = '';
+      },
+      addValueTag() {
+        this.valuesTag.push(this.value);
+        this.valueTag = '';
       },
       nextStep(){
         this.stepOne = !this.stepOne;

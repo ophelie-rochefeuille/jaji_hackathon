@@ -1,11 +1,11 @@
 <template>
     <formation-form v-show="showCreateFormModal" @close="showCreateFormModal = false"></formation-form>
     <div class=" formation-container">
-      <div class="header-bloc px-3 py-2 d-flex justify-content-between">
-          <div class="header-title">
-            <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
-          </div>
-          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une formation</button>
+      <div>
+        <div class="first-div-soignant">
+          <h4>Dashboard</h4>
+          <button class="btn btn-primary" @click.prevent="createForm()">Ajouter une formation</button>
+
         </div>
       <div class="inner-container d-block">
         <div class="formations-list mx-5">
@@ -59,9 +59,9 @@
       this.$store.dispatch("fetchFormations");
     },
     computed: {
-      ...mapGetters([
-        'getFormations'
-      ]),
+        ...mapGetters([
+          'getSoignants', 'getParcours', 'getFormations'
+        ]),
       filteredFormations() {
         const rows = [];
         const rowSize = 3;
@@ -71,6 +71,14 @@
         }
         return rows.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
       },
+    },
+    created() {
+      this.$store.dispatch("fetchFormations");
+    },
+    watch: {
+      month () {
+        this.$store.dispatch("fetchFormations");
+      }
     },
     methods: {
       createForm() {
@@ -89,8 +97,30 @@
     }
   };
 </script>
+<style scoped lang="scss">
+@import url("../assets/fonts/fonts.scss");
 
-<style scoped>
+.first-div-soignant{
+  font-family: "source-pro-regular";
+  padding: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.05);
+  top: 0;
+  background-color: white;
+  z-index: 10;
+button{
+  font-size: 14px;
+  font-family: source-pro-light;
+}
+}
+
+h4{
+  padding-left: 1rem;
+  border-left: 3px solid rgba(0, 0, 0, 0.5);
+}
   .header-bloc{
     margin: 0 1rem 3% 2rem;
     width: calc(100% - 4rem)!important;
