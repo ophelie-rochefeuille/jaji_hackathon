@@ -103,21 +103,13 @@ export default {
               localStorage.setItem('authToken', token)
             }
             setAuthToken(response.data.token)
-            window.open('http://127.0.0.1:8080/');
 
           }).catch(error => {
         console.log(error.response.data);
       }).finally(() => {
         this.isLoading = false;
       })
-
-      /*axios.post('http://localhost:9000/api/users', formData)
-          .then(response => {
-            console.log(response.data);
-          })
-          .catch(error => {
-            console.error(error);
-          });*/
+      window.location.reload()
     },
     sendForgetPwd() {
       let formData = {
