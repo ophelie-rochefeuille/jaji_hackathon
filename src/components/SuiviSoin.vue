@@ -1,76 +1,76 @@
 <template>
     <!-- <formation-form v-show="showCreateFormModal" @close="showCreateFormModal = false"></formation-form> -->
     <div class="soin-container">
-      <div class="header-bloc px-3 py-2 d-flex justify-content-between">
-          <div class="header-title">
-            <h2 class="text-primary" style="margin:0 2rem !important">Suivi de Soins</h2>
-          </div>
-          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une soins</button>
+        <div class="header-bloc px-3 py-2 d-flex justify-content-between">
+        <div class="header-title">
+            <h4 class="text-primary" style="margin:0 1rem !important; font-family: source-pro-regular;">Suivi de Soins</h4>
         </div>
-      <div class="inner-container d-block">
+        <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une soins</button>
+        </div>
+    <div class="inner-container d-block">
         <div class="soins-list mx-5">
 
-          <div class="soins pt-4">
-            <div class="row my-5 d-flex" v-for="row in filteredSoins" :key="row[0].id">
-              <div class="col-4 soin" v-for="soin in row" :key="soin.id">
+            <div class="soins pt-4">
+                <div class="row my-5 d-flex" v-for="row in filteredSoins" :key="row[0].id">
+                    <div class="col-4 soin" v-for="soin in row" :key="soin.id">
                 <div class="soin-title">
-                  <img src="../assets/jaji.svg" :alt="soin.title" class="soin-image my-3" />
-                  <!-- <img class="img-dashboard my-3" :src="soin.image" :alt="soin.title"> -->
-                  <span class="text-primary">{{ soin.title }}</span>
+                    <img src="../assets/jaji.svg" :alt="soin.title" class="soin-image my-3" />
+                    <!-- <img class="img-dashboard my-3" :src="soin.image" :alt="soin.title"> -->
+                    <span class="text-primary">{{ soin.title }}</span>
+                    </div>
                 </div>
-              </div>
+                </div>
             </div>
-          </div>
-          <div class="pagination-controls pb-3" style="margin: 2rem 0;">
-            <button @click="prevPage" class="btn btn-primary rounded-circle next-btn" :disabled="currentPage === 1">
-              <font-awesome-icon icon="fas fa-chevron-left" />
-            </button>
-            <span class="page-number mx-2">{{ currentPage }}</span>
-            <button @click="nextPage" class="btn btn-primary rounded-circle next-btn" :disabled="currentPage >= Math.ceil(getParcours.length / (rowsPerPage * 3))">
-              <font-awesome-icon icon="fas fa-chevron-right" />
-            </button>
-          </div>
+            <div class="pagination-controls pb-3" style="margin: 2rem 0;">
+                <button @click="prevPage" class="btn btn-primary rounded-circle next-btn" :disabled="currentPage === 1">
+                <font-awesome-icon icon="fas fa-chevron-left" />
+                </button>
+                <span class="page-number mx-2">{{ currentPage }}</span>
+                <button @click="nextPage" class="btn btn-primary rounded-circle next-btn" :disabled="currentPage >= Math.ceil(getParcours.length / (rowsPerPage * 3))">
+                <font-awesome-icon icon="fas fa-chevron-right" />
+                </button>
+            </div>
+            </div>
         </div>
-      </div>
-    </div>
+        </div>
 </template>
 
 <script>
-  import { library } from '@fortawesome/fontawesome-svg-core';
-  import { fas } from '@fortawesome/free-solid-svg-icons';
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+    import { library } from '@fortawesome/fontawesome-svg-core';
+    import { fas } from '@fortawesome/free-solid-svg-icons';
+    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 //   import FormationForm from './forms/FormationForm.vue';
-  import {mapGetters} from "vuex";
+    import {mapGetters} from "vuex";
 
-  library.add(fas);
-  export default {
-    components: {
-        'font-awesome-icon': FontAwesomeIcon,
-        // 'formation-form': FormationForm,
-    },
-    data() {
-      return {
-        currentPage: 1,
-        rowsPerPage: 3,
-        showCreateFormModal: false
-      };
-    },
-    created() {
-      this.$store.dispatch("fetchParcours");
-    },
-    computed: {
-      ...mapGetters([
-        'getParcours'
-      ]),
-      filteredSoins() {
-        const rows = [];
-        const rowSize = 3;
-        for (let i = 0; i < this.getParcours.length; i += rowSize) {
-          const row = this.getParcours.slice(i, i + rowSize);
-          rows.push(row);
-        }
-        return rows.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
-      },
+    library.add(fas);
+    export default {
+        components: {
+            'font-awesome-icon': FontAwesomeIcon,
+            // 'formation-form': FormationForm,
+        },
+        data() {
+        return {
+            currentPage: 1,
+            rowsPerPage: 3,
+            showCreateFormModal: false
+        };
+        },
+        created() {
+        this.$store.dispatch("fetchParcours");
+        },
+        computed: {
+        ...mapGetters([
+            'getParcours'
+        ]),
+        filteredSoins() {
+            const rows = [];
+            const rowSize = 3;
+            for (let i = 0; i < this.getParcours.length; i += rowSize) {
+            const row = this.getParcours.slice(i, i + rowSize);
+            rows.push(row);
+            }
+            return rows.slice((this.currentPage - 1) * this.rowsPerPage, this.currentPage * this.rowsPerPage);
+        },
     },
     methods: {
         createForm() {
@@ -87,7 +87,7 @@
             }
         }
     }
-  };
+};
 </script>
 
 <style scoped>
@@ -96,10 +96,13 @@
     width: calc(100% - 4rem)!important;
   }
   .header-title {
-    border-left: 2px solid #000000;
     margin-left: 2rem;
     display: flex;
     align-items: center;
+  }
+  .header-title h4 {
+    border-left: 3px solid rgba(0, 0, 0, 0.5);
+    padding-left: 1rem;
   }
   .soin-container {
     flex-direction: row;
@@ -173,4 +176,21 @@
     max-width: 100%;
     border-radius: 4px 4px 0px 0px;
   }
+
+.first-div-soignant{
+    font-family: "source-pro-regular";
+    padding: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.05);
+    top: 0;
+    background-color: white;
+    z-index: 10;
+    button{
+        font-size: 14px;
+        font-family: source-pro-light;
+    }
+}
 </style>

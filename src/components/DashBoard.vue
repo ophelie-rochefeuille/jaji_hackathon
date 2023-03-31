@@ -236,7 +236,7 @@ import {mapGetters} from "vuex";
       },
         nextFormations () {
             if (this.currentFormationIndex + 5 > this.getFormations.length) { // Si on est à la dernière page
-               return
+              return
             }
             else if (this.getFormations.length - (this.currentFormationIndex + 5) < 5) {
                 this.currentFormationIndex += this.getFormations.length - (this.currentFormationIndex + 5)
@@ -259,7 +259,7 @@ import {mapGetters} from "vuex";
         },
         nextParcours () {
             if (this.currentParcoursIndex + 5 > this.getParcours.length) { // Si on est à la dernière page
-               return
+              return
             }
             else if (this.getParcours.length - (this.currentParcoursIndex + 5) < 5) {
                 this.currentParcoursIndex += this.getParcours.length - (this.currentParcoursIndex + 5)
@@ -301,7 +301,22 @@ import {mapGetters} from "vuex";
                 }
             }
         },
-    }
+        redirectToParcours(id) {
+            const baseUrl = window.location.origin;
+            const fullPath = `${baseUrl}/soins/${id}`;
+            window.location.href = fullPath;
+        },
+        redirectToFormation(id) {
+          const baseUrl = window.location.origin;
+          const fullPath = `${baseUrl}/formation/${id}`;
+          window.location.href = fullPath;
+        },
+        redirectToSoignant(id) {
+          const baseUrl = window.location.origin;
+          const fullPath = `${baseUrl}/soignant/${id}`;
+          window.location.href = fullPath;
+        }
+      }
   };
   </script>
   

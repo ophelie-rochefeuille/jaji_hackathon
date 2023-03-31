@@ -3,7 +3,7 @@
     <div class=" formation-container">
       <div class="header-bloc px-3 py-2 d-flex justify-content-between">
           <div class="header-title">
-            <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
+            <h4 class="text-primary" style="margin:0 1rem !important; font-family: source-pro-regular">Formations</h4>
           </div>
           <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une formation</button>
         </div>
@@ -96,10 +96,14 @@
     width: calc(100% - 4rem)!important;
   }
   .header-title {
-    border-left: 2px solid #000000;
     margin-left: 2rem;
     display: flex;
     align-items: center;
+  }
+
+  .header-title h4 {
+    padding-left: 1rem;
+    border-left: 3px solid rgba(0, 0, 0, 0.5);
   }
   .formation-container {
     flex-direction: row;
@@ -122,6 +126,7 @@
 
   .header-bloc {
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
+  
   }
 
   .formations-list {  
