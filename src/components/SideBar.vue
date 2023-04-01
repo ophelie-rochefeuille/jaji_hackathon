@@ -50,11 +50,16 @@
         methods:{
             isActive(link) {
                 return this.$route.name.replace(/^\//, '') === link.replace(/^\//, '')
-            },
-            logout() {
-                // this.$store.dispatch('logout');
-                // this.$router.push({ name: 'login' });
-            },
+             },
+          logout() {
+            function clearAuthToken() {
+              axios.defaults.headers.common['Authorization'] = ''
+              localStorage.setItem('authToken', '')
+            }
+
+            clearAuthToken()
+            window.open('http://127.0.0.1:8080');
+          },
             redirect(routeName) {
                 const baseUrl = window.location.origin;
                 const fullPath = `${baseUrl}/${routeName}`;
