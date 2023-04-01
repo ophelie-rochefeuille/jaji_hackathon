@@ -5,7 +5,7 @@
           <div class="header-title">
             <h2 class="text-primary" style="margin:0 2rem !important">Suivi de Soins</h2>
           </div>
-          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une soins</button>
+          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter un soins</button>
         </div>
       <div class="inner-container d-block">
         <div class="soins-list mx-5">
