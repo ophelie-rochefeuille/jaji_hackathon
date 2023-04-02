@@ -5,14 +5,14 @@
           <div class="header-title">
             <h2 class="text-primary" style="margin:0 2rem !important">Suivi de Soins</h2>
           </div>
-          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter un soins</button>
+          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter un soin</button>
         </div>
       <div class="inner-container d-block">
         <div class="soins-list mx-5">
 
           <div class="soins pt-4">
             <div class="row my-5 d-flex" v-for="row in filteredSoins" :key="row[0].id">
-              <div class="col-4 soin" v-for="soin in row" :key="soin.id">
+              <div class="col-4 soin" v-for="soin in row" :key="soin.id" >
                 <div class="custom-card">
                   <div class="content">
                     <h2>{{ soin.title }}</h2>

@@ -7,10 +7,10 @@
         <div class="d-flex align-items-center justify-content-center">
             <ul style="padding: 0" class="justify-content-center d-block w-100">
                 <li class="d-block justify-content-center my-2">
-                <router-link v-for="item in menuItems" :key="item.id" active-class="activeLink" :to="item.link" class="d-flex flex-column justify-content-center align-items-center my-2 py-auto">
-                    <font-awesome-icon :icon="`fas fa-${item.icon}`" />
-                    <span class="mt-2">{{ item.title }}</span>
-                </router-link>
+                    <a v-for="item in menuItems" :key="item.id" @click.prevent="redirect(item.link)" class="d-flex flex-column justify-content-center align-items-center my-2 py-auto">
+                        <font-awesome-icon :icon="`fas fa-${item.icon}`" />
+                        <span class="mt-2">{{ item.title }}</span>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -56,12 +56,12 @@
               axios.defaults.headers.common['Authorization'] = ''
               localStorage.setItem('authToken', '')
             }
-
             clearAuthToken()
             window.open('http://127.0.0.1:8080');
           },
-            redirect(link) {
-                this.$router.push(link );
+            redirect(routeName) {
+                const baseUrl = window.location.origin;
+                window.location.href = routeName != '/' ? `${baseUrl}/${routeName}` : `${baseUrl}`;
             }
         }
     }

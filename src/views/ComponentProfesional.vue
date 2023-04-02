@@ -11,14 +11,13 @@
     <div class="main-div-soignant row row-cols-1 row-cols-md-3 g-4">
       <div v-for="soignant in getSoignants" :key="soignant.index" class="col card-profesional">
         <router-link class="link-profil" :to="{name: 'soignant_id',params: { id: soignant.id }}">
-        <div class="h-100">
-          <img src="../assets/jaji.svg" class="card-img-top profil-soignant" alt="test">
-          <div class="card-body d-flex flex-column">
-            <span class="card-title">{{soignant.firstName}} {{soignant.lastName}}</span>
-            <span class="card-text"> {{soignant.catégorie}}</span>
-            <button  class="btn"><a :href="soignant.doctolib" class="card-text"> Doctolib</a></button>
-          </div>
-        </div>
+        <div class="custom-card">
+                  <div class="content">
+                    <h2>{{soignant.firstName}} {{soignant.lastName}}</h2>
+                    <h2>{{soignant.catégorie}}</h2>
+                  </div>
+                  <img :src="soignant.image">
+                </div>
         </router-link>
       </div>
     </div>
@@ -159,5 +158,35 @@ input{
   border: none;
   outline: none;
 }
+.custom-card {
+    width: auto;
+    height: 11.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .custom-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .custom-card .content {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    padding: 30px 20px 20px 20px;
+    height: auto;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  }
+  .custom-card h2 {
+  margin: 0;
+  font-size: 17px;
+  color: #fff;
+  margin-bottom: 4px;
+  }
 
 </style>

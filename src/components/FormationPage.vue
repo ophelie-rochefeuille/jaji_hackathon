@@ -3,7 +3,7 @@
     <div class=" formation-container">
       <div class="header-bloc px-3 py-2 d-flex justify-content-between">
           <div class="header-title">
-            <h2 class="text-primary" style="margin:0 2rem !important">Formations</h2>
+            <h4 class="text-primary" style="margin:0 1rem !important; font-family: source-pro-regular">Formations</h4>
           </div>
         </div>
       <div class="inner-container d-block">
@@ -184,6 +184,10 @@ h4{
     padding: 10px;
     background-color: #ffffff;
     margin: 0 4%;
+  }
+  .header-title h4 {
+    padding-left: 1rem;
+    border-left: 3px solid rgba(0, 0, 0, 0.5);
   }
   .formation:hover {
     background-color: #d5e4f6;

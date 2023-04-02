@@ -1,6 +1,7 @@
 
 <template>
-  <LoginForm v-if="token===null" />
+  <LoginForm v-if="token===''" />
+  <!-- null" /> -->
   <div v-else class="main-app-div" @click="toogle">
   <SideBar />
     <router-view class="pages" />

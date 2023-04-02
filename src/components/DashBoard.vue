@@ -151,7 +151,7 @@
         <input type="url" id="video-link" v-model="videoLink">
       </div>
       <div class="buttons-div">
-        <button @click="postData()" class="button">Valider la création</button>
+        <button @click="postData()" class="button">Ok</button>
         <button v-show="currentPage !== 1" @click="prevPage"><font-awesome-icon icon="fas fa-chevron-left" /></button>
         <button v-show="currentPage !== 3" class="button-next" @click="nextPage"><font-awesome-icon icon="fas fa-chevron-right" /></button>
       </div>
@@ -350,6 +350,21 @@ import {mapGetters} from "vuex";
                 }
             }
         },
+        redirectToParcours(id) {
+            const baseUrl = window.location.origin;
+            const fullPath = `${baseUrl}/soins/${id}`;
+            window.location.href = fullPath;
+        },
+        redirectToFormation(id) {
+          const baseUrl = window.location.origin;
+          const fullPath = `${baseUrl}/formation/${id}`;
+          window.location.href = fullPath;
+        },
+        redirectToSoignant(id) {
+          const baseUrl = window.location.origin;
+          const fullPath = `${baseUrl}/soignant/${id}`;
+          window.location.href = fullPath;
+        }
     }
   };
   </script>
