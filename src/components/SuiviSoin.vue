@@ -5,18 +5,19 @@
           <div class="header-title">
             <h2 class="text-primary" style="margin:0 2rem !important">Suivi de Soins</h2>
           </div>
-          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter une soins</button>
+          <button class="btn btn-primary" @click.prevent="createForm()"><font-awesome-icon class="icon" :icon="`fas fa-circle-plus`" /> Ajouter un soin</button>
         </div>
       <div class="inner-container d-block">
         <div class="soins-list mx-5">
 
           <div class="soins pt-4">
             <div class="row my-5 d-flex" v-for="row in filteredSoins" :key="row[0].id">
-              <div class="col-4 soin" v-for="soin in row" :key="soin.id">
-                <div class="soin-title">
-                  <img src="../assets/jaji.svg" :alt="soin.title" class="soin-image my-3" />
-                  <!-- <img class="img-dashboard my-3" :src="soin.image" :alt="soin.title"> -->
-                  <span class="text-primary">{{ soin.title }}</span>
+              <div class="col-4 soin" v-for="soin in row" :key="soin.id" >
+                <div class="custom-card">
+                  <div class="content">
+                    <h2>{{ soin.title }}</h2>
+                  </div>
+                  <img src="../assets/jaji.svg" :alt="soin.title"  />
                 </div>
               </div>
             </div>
@@ -172,5 +173,36 @@
     max-height: 100%;
     max-width: 100%;
     border-radius: 4px 4px 0px 0px;
+  }
+
+  .custom-card {
+    width: auto;
+    height: 11.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .custom-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .custom-card .content {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    padding: 30px 20px 20px 20px;
+    height: auto;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  }
+  .custom-card h2 {
+  margin: 0;
+  font-size: 17px;
+  color: #fff;
+  margin-bottom: 4px;
   }
 </style>

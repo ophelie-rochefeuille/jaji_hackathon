@@ -16,8 +16,12 @@
                     <div class="main-div-items">
                         <div class="items-dashboard">
                             <div v-for="parcours in filteredParcours" :key="parcours.id" class="div-card text-center parcours-block" @click.prevent="redirectToParcours(parcours.id)">
-                                <img class="img-dashboard" src="../assets/logo-jaji.png" >
-                                <div >{{ parcours.title }}</div>
+                                <div class="custom-card">
+                                  <div class="content">
+                                    <h2>{{ parcours.title }}</h2>
+                                  </div>
+                                  <img src="../assets/logo-jaji.png" >
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -38,8 +42,12 @@
                     <div class="main-div-items">
                         <div class="items-dashboard">
                             <div v-for="formation in filteredFormations" :key="formation.id" class="div-card text-center formation-block" @click.prevent="redirectToFormation(formation.id)">
-                                <img class="img-dashboard" :src="formation.image" >
-                                <div >{{ formation.title }}</div>
+                              <div class="custom-card">
+                              <div class="content">
+                                <h2>{{ formation.title }}</h2>
+                              </div>
+                                <img :src="formation.image" >
+                             </div>
                             </div>
                         </div>
                     </div>
@@ -58,11 +66,14 @@
                     </div>
                     <div class="main-div-items">
                         <div class="items-dashboard">
-                            <div v-for="soignant in filteredSoignants" :key="soignant.id" class="div-card text-center soignant-block" @click.prevent="redirectToSoignant(soignant.id)">
-                                <div>
-                                    <img class="img-dashboard-soignants" :src="soignant.image">
+                            <div v-for="soignant in filteredSoignants" :key="soignant.id" class="div-cards text-center soignant-block" @click.prevent="redirectToSoignant(soignant.id)">
+                                <div class="custom-card">
+                                    <div class="content">
+                                      <h2>{{ soignant.firstName }} {{ soignant.lastName }}</h2>
+                                    </div>
+                                    <img :src="soignant.image">
 
-                                    <div>{{ soignant.firstName }} {{ soignant.lastName }}</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -140,7 +151,7 @@
         <input type="url" id="video-link" v-model="videoLink">
       </div>
       <div class="buttons-div">
-        <button @click="postData()" class="button">Valider la création</button>
+        <button @click="postData()" class="button">Ok</button>
         <button v-show="currentPage !== 1" @click="prevPage"><font-awesome-icon icon="fas fa-chevron-left" /></button>
         <button v-show="currentPage !== 3" class="button-next" @click="nextPage"><font-awesome-icon icon="fas fa-chevron-right" /></button>
       </div>
@@ -339,6 +350,21 @@ import {mapGetters} from "vuex";
                 }
             }
         },
+        redirectToParcours(id) {
+            const baseUrl = window.location.origin;
+            const fullPath = `${baseUrl}/soins/${id}`;
+            window.location.href = fullPath;
+        },
+        redirectToFormation(id) {
+          const baseUrl = window.location.origin;
+          const fullPath = `${baseUrl}/formation/${id}`;
+          window.location.href = fullPath;
+        },
+        redirectToSoignant(id) {
+          const baseUrl = window.location.origin;
+          const fullPath = `${baseUrl}/soignant/${id}`;
+          window.location.href = fullPath;
+        }
     }
   };
   </script>
@@ -348,6 +374,8 @@ import {mapGetters} from "vuex";
 
   .div-card{
     width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .div-card:hover{
@@ -432,6 +460,7 @@ import {mapGetters} from "vuex";
     max-height: 100%;
     max-width: 100%;
     border-radius: 4px 4px 0px 0px;
+    object-fit: cover;
   }
 
   .img-dashboard-soignants{
@@ -539,6 +568,46 @@ import {mapGetters} from "vuex";
   .parcours-block:hover {
     background-color: #d5e4f6;
     cursor: pointer;
+  }
+  .illu-embed, .title-embed {
+    height: 50%;
+  }
+
+  .custom-card {
+    width: auto;
+    height: 11.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .custom-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .custom-card .content {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    padding: 30px 20px 20px 20px;
+    height: auto;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  }
+  .custom-card h2 {
+  margin: 0;
+  font-size: 17px;
+  color: #fff;
+  margin-bottom: 4px;
+  }
+
+  .my-3 {
+    border-left: 3px solid rgba(0, 0, 0, 0.5);
+    padding-left: 0.5rem;
+    margin-left: 3rem;
   }
   </style>  
   
