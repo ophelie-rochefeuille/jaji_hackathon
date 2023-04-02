@@ -59,7 +59,7 @@
             }
 
             clearAuthToken()
-            window.open('http://127.0.0.1:8080/login');
+            window.location.href ='http://127.0.0.1:8080/login';
           },
             redirect(link) {
                 this.$router.push(link );
